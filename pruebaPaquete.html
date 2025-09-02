@@ -3,17 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Luxstone Executive & Suites - Footer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Habitaciones Hotel</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Overlock:wght@400;700&family=Open+Sans:wght@400;700&display=swap"
       rel="stylesheet"
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
+
     <style>
       * {
         margin: 0;
@@ -23,494 +26,1402 @@
 
       body {
         font-family: "Open Sans", sans-serif;
-        background-color: #f5f5f5;
-        margin: 0;
-        padding: 0;
+        background: #f8f9fa;
       }
 
-      .footer-section {
-        width: 100vw;
+      /* Sección Principal */
+      .habInfo-section {
+        font-family: "Open Sans", sans-serif;
+        padding: 80px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 1s ease-out;
+      }
+
+      .habInfo-section.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .habInfo-header {
+        text-align: center;
+        margin-bottom: 60px;
         position: relative;
       }
 
-      .footer-main {
+      .habInfo-title {
+        font-family: "Oswald", sans-serif;
+        font-weight: 300;
+        font-size: 3rem;
+        color: #2c3e50;
+        margin-bottom: 20px;
         position: relative;
-        width: 100%;
-        min-height: 632px;
-        background-image: url("https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877468/suite-matrimonial-_2_w6kyol.webp");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
+        display: inline-block;
       }
 
-      .footer-overlay {
+      .habInfo-title::before {
+        content: "";
         position: absolute;
+        left: -60px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 2px;
+        background: #34495e;
+      }
+
+      .habInfo-description {
+        font-family: "Overlock", cursive;
+        font-weight: 400;
+        font-size: 1.2rem;
+        color: #7f8c8d;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .habInfo-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+
+      .habInfo-room {
+        position: relative;
+        height: 300px;
+        border-radius: 15px;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transform: translateY(50px);
+        opacity: 0;
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .habInfo-room.animate {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .habInfo-room:nth-child(1) {
+        transition-delay: 0.1s;
+      }
+      .habInfo-room:nth-child(2) {
+        transition-delay: 0.2s;
+      }
+      .habInfo-room:nth-child(3) {
+        transition-delay: 0.3s;
+      }
+      .habInfo-room:nth-child(4) {
+        transition-delay: 0.4s;
+      }
+
+      .habInfo-room img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease-out;
+      }
+
+      .habInfo-room:hover img {
+        transform: scale(1.1);
+      }
+
+      .habInfo-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        transition: background 0.3s ease;
+      }
+
+      .habInfo-room:hover .habInfo-overlay {
+        background: rgba(0, 0, 0, 0.6);
+      }
+
+      .habInfo-room-name {
+        font-family: "Oswald", sans-serif;
+        font-weight: 300;
+        font-size: 1.8rem;
+        color: white;
+        margin-bottom: 10px;
+        transform: translateY(10px);
+        opacity: 0;
+        transition: all 0.6s ease;
+      }
+
+      .habInfo-room.animate .habInfo-room-name {
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: 0.3s;
+      }
+
+      .habInfo-capacity {
+        font-family: "Open Sans", sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        color: #ecf0f1;
+        transform: translateY(10px);
+        opacity: 0;
+        transition: all 0.6s ease;
+      }
+
+      .habInfo-room.animate .habInfo-capacity {
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: 0.4s;
+      }
+
+      .habInfo-center {
+        grid-column: 1 / -1;
+        justify-self: center;
+        max-width: 500px;
+        transform: translateY(50px);
+        opacity: 0;
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        transition-delay: 0.5s;
+      }
+
+      .habInfo-center.animate {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* Modal Styles */
+      .habModal-overlay {
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        z-index: 1;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
-      .footer-content {
+      .habModal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .habModal-content {
+        background: white;
+        width: 90%;
+        max-width: 1000px;
+        max-height: 90vh;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        transform: scale(0.7) translateY(50px);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .habModal-overlay.active .habModal-content {
+        transform: scale(1) translateY(0);
+      }
+
+      .habModal-header {
+        background: #000;
+        color: white;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .habModal-title {
+        font-family: "Oswald", sans-serif;
+        font-weight: 300;
+        font-size: 1.8rem;
+      }
+
+      .habModal-close {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 5px;
+        transition: transform 0.2s ease;
+      }
+
+      .habModal-close:hover {
+        transform: scale(1.2);
+      }
+
+      /* Swiper Styles */
+      .habModal-slider {
+        height: 350px;
         position: relative;
-        z-index: 2;
-        padding: 60px 40px 40px;
+        transition: all 0.5s ease;
+      }
+
+      .habModal-content.scrolled .habModal-slider {
+        height: 280px;
+      }
+
+      .swiper {
+        width: 100%;
         height: 100%;
-        display: flex;
-        flex-direction: column;
       }
 
-      .footer-main-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        flex: 1;
-        margin-bottom: 40px;
-        gap: 60px;
-      }
-
-      .footer-left-section {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .footer-logo {
-        max-width: 100%;
-        height: auto;
-        max-height: 400px;
-      }
-
-      .footer-right-section {
-        flex: 2;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-
-      .footer-payments {
-        margin-bottom: 40px;
-      }
-
-      .footer-payments h3 {
-        font-family: "Open Sans", sans-serif;
-        font-size: 20px;
-        color: #f8f8f8;
-        margin-bottom: 20px;
-        font-weight: 400;
-      }
-
-      .footer-payment-icons {
-        width: 100%;
-        max-width: 350px;
-        height: auto;
-        border-radius: 8px;
-      }
-
-      .footer-info-sections {
-        display: flex;
-        gap: 60px;
-        margin-bottom: 40px;
-      }
-
-      .footer-address,
-      .footer-contact {
-        color: #f8f8f8;
-        flex: 1;
-      }
-
-      .footer-address h3,
-      .footer-contact h3 {
-        font-family: "Open Sans", sans-serif;
-        font-size: 20px;
-        margin-bottom: 15px;
-        font-weight: 400;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .footer-address p {
-        font-size: 16px;
-        line-height: 1.4;
-        margin-bottom: 15px;
-      }
-
-      .footer-email {
-        color: #ffffff;
-        text-decoration: underline;
-        font-size: 16px;
-        transition: color 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .footer-email:hover {
-        color: #e6b412;
-      }
-
-      .footer-phone {
-        font-size: 24px;
-        margin-top: 10px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .footer-phone a {
-        color: #f8f8f8;
-        text-decoration: underline;
-        transition: color 0.3s ease;
-      }
-
-      .footer-phone a:hover {
-        color: #e6b412;
-      }
-
-      .footer-divider {
-        width: 100%;
-        height: 1px;
-        background-color: #ffffff;
-        margin: 30px 0;
-        border: none;
-      }
-
-      .footer-social {
-        display: flex;
-        justify-content: center;
-        gap: 80px;
-        align-items: center;
-        margin-bottom: 20px;
-      }
-
-      .footer-social-link {
-        display: inline-block;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-      }
-
-      .footer-social-link:hover {
-        transform: scale(1.1);
-        opacity: 0.8;
-      }
-
-      .footer-social-link:focus {
-        outline: 2px solid #e6b412;
-        outline-offset: 4px;
-        border-radius: 50%;
-      }
-
-      .footer-social-icon {
-        width: 65px;
-        height: 65px;
-        color: #ffffff;
-        background: transparent;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 32px;
-        transition: background 0.3s ease;
-      }
-
-      .footer-social-link:hover .footer-social-icon {
-        background: rgba(255, 255, 255, 0.1);
-      }
-
-      .footer-separator {
-        width: 100%;
-        height: 1px;
-        background-color: #ddd;
-        border: none;
-      }
-
-      .footer-copyright {
-        width: 100%;
-        background-color: #e6b412;
-        padding: 27px 20px;
+      .swiper-slide {
         text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
-      .footer-copyright p {
-        font-family: "Open Sans", sans-serif;
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .habModal-content.scrolled .swiper-slide img {
+        transform: scale(0.9);
+      }
+
+      .swiper-pagination-bullet {
+        width: 12px;
+        height: 12px;
+        background: rgba(255, 255, 255, 0.5);
+        opacity: 1;
+      }
+
+      .swiper-pagination-bullet-active {
+        background: #fff;
+      }
+
+      .swiper-button-next,
+      .swiper-button-prev {
+        color: white;
+        background: rgba(0, 0, 0, 0.5);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+
+      .swiper-button-next:after,
+      .swiper-button-prev:after {
         font-size: 20px;
-        color: #000000;
-        font-weight: 400;
-        margin: 0;
+        font-weight: bold;
       }
 
-      /* Responsive Design */
-      @media (max-width: 1024px) {
-        .footer-content {
-          padding: 40px 30px 30px;
+      .swiper-button-next:hover,
+      .swiper-button-prev:hover {
+        background: rgba(0, 0, 0, 0.7);
+      }
+
+      .habModal-body {
+        padding: 30px;
+        overflow-y: auto;
+        max-height: 400px;
+        position: relative;
+        transition: all 0.5s ease;
+      }
+
+      .habModal-content.scrolled .habModal-body {
+        transform: translateY(-30px);
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #3498db;
+        font-size: 14px;
+        opacity: 1;
+        animation: bounce 2s infinite;
+        transition: opacity 0.3s ease;
+      }
+
+      .habModal-content.scrolled .scroll-indicator {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0) translateX(-50%);
+        }
+        40% {
+          transform: translateY(-10px) translateX(-50%);
+        }
+        60% {
+          transform: translateY(-5px) translateX(-50%);
+        }
+      }
+
+      .scroll-indicator i {
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+
+      .habModal-info-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #eee;
+      }
+
+      .habModal-room-desc {
+        font-family: "Open Sans", sans-serif;
+        font-size: 1.1rem;
+        color: #2c3e50;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .habModal-reserve-btn {
+        background: linear-gradient(
+          270deg,
+          #ffd36e 0%,
+          #9e7a29 83%,
+          #967427 100%
+        );
+        color: #f3f0f0;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-family: "Open Sans", sans-serif;
+        font-size: 1.1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .habModal-reserve-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      }
+
+      .habModal-amenities {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-bottom: 30px;
+      }
+
+      .habModal-amenity-group {
+        border-bottom: 2px solid #eee;
+        padding-bottom: 20px;
+      }
+
+      .habModal-amenity-group:last-child {
+        border-bottom: none;
+      }
+
+      .habModal-amenity-title {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: #2c3e50;
+      }
+
+      .habModal-amenity-title i {
+        font-size: 1.3rem;
+        color: #3498db;
+      }
+
+      .habModal-amenity-list {
+        list-style: none;
+        font-family: "Open Sans", sans-serif;
+        color: #555;
+        line-height: 1.8;
+      }
+
+      .habModal-amenity-list li {
+        padding: 3px 0;
+      }
+
+      /* Responsive */
+      @media (max-width: 992px) {
+        .habModal-content {
+          width: 95%;
+          max-height: 95vh;
         }
 
-        .footer-main-content {
-          flex-direction: column;
-          gap: 30px;
+        .habModal-slider {
+          height: 300px;
         }
 
-        .footer-info-sections {
-          gap: 40px;
+        .habModal-content.scrolled .habModal-slider {
+          height: 240px;
         }
 
-        .footer-logo {
-          width: 300px;
-        }
-
-        .footer-social {
-          gap: 60px;
+        .habModal-amenities {
+          grid-template-columns: 1fr;
+          gap: 20px;
         }
       }
 
       @media (max-width: 768px) {
-        .footer-content {
-          padding: 30px 20px 20px;
-          text-align: center;
+        .habInfo-grid {
+          grid-template-columns: 1fr;
         }
 
-        .footer-logo {
-          width: 250px;
-          margin: 0 auto 30px;
+        .habInfo-title {
+          font-size: 2rem;
         }
 
-        .footer-main-content {
-          text-align: center;
+        .habInfo-title::before {
+          left: -40px;
+          width: 30px;
         }
 
-        .footer-info-sections {
+        .habModal-info-header {
           flex-direction: column;
-          gap: 30px;
+          gap: 20px;
           text-align: center;
         }
 
-        .footer-address h3,
-        .footer-contact h3 {
-          justify-content: center;
-          font-size: 18px;
-        }
-
-        .footer-payments h3 {
-          font-size: 18px;
-        }
-
-        .footer-address p {
-          font-size: 15px;
-        }
-
-        .footer-email {
-          font-size: 15px;
+        .habModal-room-desc {
           justify-content: center;
         }
 
-        .footer-phone {
-          font-size: 20px;
-          justify-content: center;
+        .habModal-slider {
+          height: 250px;
         }
 
-        .footer-social {
-          gap: 40px;
+        .habModal-content.scrolled .habModal-slider {
+          height: 200px;
         }
 
-        .footer-social-icon {
-          width: 55px;
-          height: 55px;
-          font-size: 26px;
+        .swiper-button-next,
+        .swiper-button-prev {
+          display: none;
         }
       }
 
-      @media (max-width: 480px) {
-        .footer-content {
-          padding: 20px 15px 15px;
+      @media (max-width: 576px) {
+        .habModal-slider {
+          height: 200px;
         }
 
-        .footer-logo {
-          width: 200px;
+        .habModal-content.scrolled .habModal-slider {
+          height: 160px;
         }
 
-        .footer-info-sections {
-          gap: 25px;
+        .habModal-body {
+          padding: 20px;
         }
 
-        .footer-address h3,
-        .footer-contact h3 {
-          font-size: 16px;
+        .habModal-content.scrolled .habModal-body {
+          transform: translateY(-20px);
         }
 
-        .footer-payments h3 {
-          font-size: 16px;
+        .habModal-amenity-title {
+          font-size: 1rem;
         }
 
-        .footer-address p {
-          font-size: 14px;
-          line-height: 1.3;
-        }
-
-        .footer-email {
-          font-size: 14px;
-        }
-
-        .footer-phone {
-          font-size: 18px;
-        }
-
-        .footer-social {
-          gap: 30px;
-        }
-
-        .footer-social-icon {
-          width: 50px;
-          height: 50px;
-          font-size: 22px;
-        }
-
-        .footer-copyright p {
-          font-size: 16px;
-          line-height: 1.3;
+        .habModal-amenity-list {
+          font-size: 0.9rem;
         }
       }
 
-      /* Accessibility improvements */
-      @media (prefers-reduced-motion: reduce) {
-        .footer-social-link,
-        .footer-email,
-        .footer-phone a {
-          transition: none;
+      /* Para pantallas grandes */
+      @media (min-width: 1200px) {
+        .habModal-content {
+          max-width: 1100px;
         }
-      }
 
-      .footer-email:focus,
-      .footer-phone a:focus {
-        outline: 2px solid #e6b412;
-        outline-offset: 2px;
-        border-radius: 4px;
+        .habModal-slider {
+          height: 400px;
+        }
+
+        .habModal-content.scrolled .habModal-slider {
+          height: 320px;
+        }
+
+        .habModal-body {
+          max-height: 450px;
+        }
       }
     </style>
   </head>
   <body>
-    <footer class="footer-section">
-      <!-- Sección principal con imagen de fondo -->
-      <div class="footer-main">
-        <div class="footer-overlay"></div>
-        <div class="footer-content">
-          <!-- Contenido principal dividido en dos partes -->
-          <div class="footer-main-content">
-            <!-- Logo a la izquierda (1/3 del ancho) -->
-            <div class="footer-left-section">
-              <img
-                src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756137794/f8da8817-fa9e-4cfe-b860-4f321a3e49f4.png"
-                alt="Luxstone Executive & Suites Logo"
-                class="footer-logo"
-              />
-            </div>
-
-            <!-- Contenido a la derecha (2/3 del ancho) -->
-            <div class="footer-right-section">
-              <!-- Métodos de pago (parte superior) -->
-              <div class="footer-payments">
-                <h3>Nuestros Pagos:</h3>
-                <img
-                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756745652/a9ce49e9-62f3-4355-8085-158f5cae2a30.png"
-                  alt="Métodos de pago aceptados: UnionPay, Visa, Maestro, JCB, PayPal, MasterCard"
-                  class="footer-payment-icons"
-                />
-              </div>
-
-              <!-- Dirección y Contacto (parte media) -->
-              <div class="footer-info-sections">
-                <!-- Dirección -->
-                <div class="footer-address">
-                  <h3>
-                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                    Dirección:
-                  </h3>
-                  <p>
-                    Avenida 6 de Agosto entre Rozendo Gutierrez Edificio Torre
-                    Nº 2255, Zona Sopochi, La Paz, Bolivia
-                  </p>
-                  <a href="mailto:luxstonercp@gmail.com" class="footer-email">
-                    <i class="fas fa-envelope" aria-hidden="true"></i>
-                    luxstonercp@gmail.com
-                  </a>
-                </div>
-
-                <!-- Contacto -->
-                <div class="footer-contact">
-                  <h3>
-                    <i class="fas fa-phone" aria-hidden="true"></i>
-                    Contáctanos:
-                  </h3>
-                  <div class="footer-phone">
-                    <a
-                      href="tel:+59165528468"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      (+591) 65528468
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Línea divisoria -->
-          <hr class="footer-divider" />
-
-          <!-- Redes sociales (parte inferior) -->
-          <nav class="footer-social" aria-label="Redes sociales">
-            <a
-              href="https://www.facebook.com/profile.php?id=61557240494194"
-              aria-label="Síguenos en Facebook"
-              class="footer-social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div class="footer-social-icon">
-                <i class="fab fa-facebook-f" aria-hidden="true"></i>
-              </div>
-            </a>
-
-            <a
-              href="https://wa.me/59165528468"
-              aria-label="Contáctanos por WhatsApp"
-              class="footer-social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div class="footer-social-icon">
-                <i class="fab fa-whatsapp" aria-hidden="true"></i>
-              </div>
-            </a>
-
-            <a
-              href="https://www.tiktok.com/@hotel.luxstone?_t=ZM-8zMwrI2UOpR&_r=1"
-              aria-label="Síguenos en TikTok"
-              class="footer-social-link"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div class="footer-social-icon">
-                <i class="fab fa-tiktok" aria-hidden="true"></i>
-              </div>
-            </a>
-          </nav>
-        </div>
-      </div>
-
-      <!-- Separador -->
-      <div class="footer-separator"></div>
-
-      <!-- Sección de copyright -->
-      <div class="footer-copyright">
-        <p>
-          Copyright © 2025 Luxstone Executive & Suites – Todos los derechos
-          reservados.
+    <!-- Sección Principal de Habitaciones -->
+    <section class="habInfo-section" id="habInfo-section">
+      <div class="habInfo-header">
+        <h2 class="habInfo-title">Excelencia y confort en cada estancia</h2>
+        <p class="habInfo-description">
+          Habitaciones privadas, suites familiares y espacios con cocina propia,
+          ideales para estancias largas o cortas.
         </p>
       </div>
-    </footer>
+
+      <div class="habInfo-grid">
+        <!-- Suite Junior -->
+        <div class="habInfo-room" data-room="suite-junior">
+          <img
+            src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877446/suite-junior-02_gcbvrn.webp"
+            alt="Suite Junior"
+          />
+          <div class="habInfo-overlay">
+            <h3 class="habInfo-room-name">SUITE JUNIOR</h3>
+            <p class="habInfo-capacity">CAPACIDAD DE 1 PERSONA</p>
+          </div>
+        </div>
+
+        <!-- Habitación Matrimonial -->
+        <div class="habInfo-room" data-room="hab-matrimonial">
+          <img
+            src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877456/hab-matrimonial-01_1_uiabqz.webp"
+            alt="Habitación Matrimonial"
+          />
+          <div class="habInfo-overlay">
+            <h3 class="habInfo-room-name">HABITACION MATRIMONIAL</h3>
+            <p class="habInfo-capacity">CAPACIDAD DE 2 PERSONAS</p>
+          </div>
+        </div>
+
+        <!-- Suite Ejecutiva Matrimonial -->
+        <div class="habInfo-room" data-room="suite-ejecutiva">
+          <img
+            src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877480/suite-matrimonial-02_d2wuam.webp"
+            alt="Suite Ejecutiva Matrimonial"
+          />
+          <div class="habInfo-overlay">
+            <h3 class="habInfo-room-name">SUITE EJECUTIVA MATRIMONIAL</h3>
+            <p class="habInfo-capacity">CAPACIDAD DE 2 PERSONAS</p>
+          </div>
+        </div>
+
+        <!-- Business Matrimonial -->
+        <div class="habInfo-room" data-room="business-matrimonial">
+          <img
+            src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877494/suite-matrimonial-_1_jjlthr.webp"
+            alt="Business Matrimonial"
+          />
+          <div class="habInfo-overlay">
+            <h3 class="habInfo-room-name">BUSINESS MATRIMONIAL</h3>
+            <p class="habInfo-capacity">CAPACIDAD DE 2 PERSONAS</p>
+          </div>
+        </div>
+
+        <!-- Suite Familiar (Centro) -->
+        <div class="habInfo-room habInfo-center" data-room="suite-familiar">
+          <img
+            src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877493/hab-matrimonial-02_uwwsjr.webp"
+            alt="Suite Familiar"
+          />
+          <div class="habInfo-overlay">
+            <h3 class="habInfo-room-name">SUITE FAMILIAR</h3>
+            <p class="habInfo-capacity">CAPACIDAD DE 4 PERSONAS</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modales de Habitaciones -->
+    <!-- Modal Suite Junior -->
+    <div class="habModal-overlay" id="habModal-suite-junior">
+      <div class="habModal-content">
+        <div class="habModal-header">
+          <h3 class="habModal-title">SUITE JUNIOR</h3>
+          <button class="habModal-close">&times;</button>
+        </div>
+        <div class="habModal-slider">
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877469/suite-junior-04_fva2hx.webp"
+                  alt="Suite Junior 1"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877463/suite-junior-03_itphi8.webp"
+                  alt="Suite Junior 2"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877446/suite-junior-02_gcbvrn.webp"
+                  alt="Suite Junior 3"
+                />
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+        <div class="habModal-body">
+          <div class="habModal-info-header">
+            <div class="habModal-room-desc">
+              <i class="fas fa-bed"></i>
+              <span>1 cama doble grande, vista a la ciudad</span>
+            </div>
+            <button class="habModal-reserve-btn">
+              <i class="fas fa-bell"></i>
+              Reservar
+            </button>
+          </div>
+
+          <div class="habModal-amenities">
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-bed"></i>
+                <span>Habitaciones</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Camas y ropa de cama</li>
+                <li>Ocupación máxima: 1</li>
+                <li>Camas plegables permitidas: 1</li>
+                <li>
+                  Colchón con cubierta acolchada, colchón de plumas y edredón
+                </li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-shower"></i>
+                <span>Servicios de higiene y confort</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Papel higiénico</li>
+                <li>Toallas</li>
+                <li>Bañera o ducha</li>
+                <li>2 Baños</li>
+                <li>Artículos de aseo gratis</li>
+                <li>Secador de pelo</li>
+                <li>Ducha</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-tv"></i>
+                <span>Equipamiento audiovisual y tecnológico</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>TV de pantalla plana</li>
+                <li>Canales por cable</li>
+                <li>Wifi</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-utensils"></i>
+                <span>Comida y bebida</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Desayuno Bufet Continental</li>
+                <li>Frigobar</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-kitchen-set"></i>
+                <span>Cocina</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Productos de limpieza</li>
+                <li>Comedor</li>
+                <li>Microondas</li>
+                <li>Refrigerador</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-couch"></i>
+                <span>Zona de estar</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Sala de Descanso</li>
+              </ul>
+            </div>
+          </div>
+          <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+            <span>Desplázate para ver más</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Habitación Matrimonial -->
+    <div class="habModal-overlay" id="habModal-hab-matrimonial">
+      <div class="habModal-content">
+        <div class="habModal-header">
+          <h3 class="habModal-title">HABITACION MATRIMONIAL</h3>
+          <button class="habModal-close">&times;</button>
+        </div>
+        <div class="habModal-slider">
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877452/hab-matrimonial-02_1_nbupt8.webp"
+                  alt="Habitación Matrimonial 1"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877456/hab-matrimonial-01_1_uiabqz.webp"
+                  alt="Habitación Matrimonial 2"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877455/hab-matrimonial-03_vyqzbe.webp"
+                  alt="Habitación Matrimonial 3"
+                />
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+        <div class="habModal-body">
+          <div class="habModal-info-header">
+            <div class="habModal-room-desc">
+              <i class="fas fa-bed"></i>
+              <span>1 cama de 2 plazas, vista a la ciudad</span>
+            </div>
+            <button class="habModal-reserve-btn">
+              <i class="fas fa-bell"></i>
+              Reservar
+            </button>
+          </div>
+
+          <div class="habModal-amenities">
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-bed"></i>
+                <span>Habitaciones</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Servicios de higiene y confort</li>
+                <li>Camas y ropa de cama</li>
+                <li>Ocupación máxima: 2</li>
+                <li>Camas plegables permitidas: 1</li>
+                <li>
+                  Colchón con cubierta acolchada, colchón de plumas y edredón
+                </li>
+                <li>Baño Compartido</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-shower"></i>
+                <span>Servicios de higiene y confort</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Papel higiénico</li>
+                <li>Toallas</li>
+                <li>Bañera o ducha</li>
+                <li>Artículos de aseo gratis</li>
+                <li>Secador de pelo</li>
+                <li>Ducha</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-tv"></i>
+                <span>Equipamiento audiovisual y tecnológico</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Desayuno Buffet Continental</li>
+                <li>TV de pantalla plana</li>
+                <li>Canales por cable</li>
+                <li>Wifi</li>
+              </ul>
+            </div>
+          </div>
+          <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+            <span>Desplázate para ver más</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Suite Ejecutiva -->
+    <div class="habModal-overlay" id="habModal-suite-ejecutiva">
+      <div class="habModal-content">
+        <div class="habModal-header">
+          <h3 class="habModal-title">SUITE EJECUTIVA MATRIMONIAL</h3>
+          <button class="habModal-close">&times;</button>
+        </div>
+        <div class="habModal-slider">
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877476/suite-matrimonial-01_tzm4oy.webp"
+                  alt="Suite Ejecutiva 1"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877480/suite-matrimonial-03_vkgcp5.webp"
+                  alt="Suite Ejecutiva 2"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877480/suite-matrimonial-02_d2wuam.webp"
+                  alt="Suite Ejecutiva 3"
+                />
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+        <div class="habModal-body">
+          <div class="habModal-info-header">
+            <div class="habModal-room-desc">
+              <i class="fas fa-bed"></i>
+              <span>1 cama de 2 plazas, vista a la ciudad</span>
+            </div>
+            <button class="habModal-reserve-btn">
+              <i class="fas fa-bell"></i>
+              Reservar
+            </button>
+          </div>
+
+          <div class="habModal-amenities">
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-bed"></i>
+                <span>Habitaciones</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Servicios de higiene y confort</li>
+                <li>Camas y ropa de cama</li>
+                <li>Ocupación máxima: 2</li>
+                <li>Camas plegables permitidas: 1</li>
+                <li>
+                  Colchón con cubierta acolchada, colchón de plumas y edredón
+                </li>
+                <li>Baño Privado</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-shower"></i>
+                <span>Servicios de higiene y confort</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Papel higiénico</li>
+                <li>Toallas</li>
+                <li>Bañera o ducha</li>
+                <li>Artículos de aseo gratis</li>
+                <li>Secador de pelo</li>
+                <li>Ducha</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-tv"></i>
+                <span>Equipamiento audiovisual y tecnológico</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>TV de pantalla plana</li>
+                <li>Canales por cable</li>
+                <li>Wifi</li>
+                <li>Desayuno Buffet Continental</li>
+                <li>Frigobar</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-kitchen-set"></i>
+                <span>Cocina</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Comedor</li>
+                <li>Zona de estar</li>
+                <li>Sala de Descanso</li>
+              </ul>
+            </div>
+          </div>
+          <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+            <span>Desplázate para ver más</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Business Matrimonial -->
+    <div class="habModal-overlay" id="habModal-business-matrimonial">
+      <div class="habModal-content">
+        <div class="habModal-header">
+          <h3 class="habModal-title">BUSINESS MATRIMONIAL</h3>
+          <button class="habModal-close">&times;</button>
+        </div>
+        <div class="habModal-slider">
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877468/suite-matrimonial-_3_1_kz0gjk.webp"
+                  alt="Business Matrimonial 1"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877473/suite-matrimonial-_4_oo0mde.webp"
+                  alt="Business Matrimonial 2"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877494/suite-matrimonial-_1_jjlthr.webp"
+                  alt="Business Matrimonial 3"
+                />
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+        <div class="habModal-body">
+          <div class="habModal-info-header">
+            <div class="habModal-room-desc">
+              <i class="fas fa-bed"></i>
+              <span>1 cama de 2 plazas, vista a la ciudad</span>
+            </div>
+            <button class="habModal-reserve-btn">
+              <i class="fas fa-bell"></i>
+              Reservar
+            </button>
+          </div>
+
+          <div class="habModal-amenities">
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-bed"></i>
+                <span>Habitaciones</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Camas y ropa de cama</li>
+                <li>Ocupación máxima: 2</li>
+                <li>Camas plegables permitidas: 1</li>
+                <li>
+                  Colchón con cubierta acolchada, colchón de plumas y edredón
+                </li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-shower"></i>
+                <span>Servicios de higiene y confort</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Baño Privado</li>
+                <li>Papel higiénico</li>
+                <li>Toallas</li>
+                <li>Bañera o ducha</li>
+                <li>Artículos de aseo gratis</li>
+                <li>Secador de pelo</li>
+                <li>Ducha</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-tv"></i>
+                <span>Equipamiento audiovisual y tecnológico</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>TV de pantalla plana</li>
+                <li>Canales por cable</li>
+                <li>Wifi</li>
+                <li>Frigobar</li>
+                <li>Desayuno Buffet Continental</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-kitchen-set"></i>
+                <span>Cocina</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Zona de estar</li>
+                <li>Productos de limpieza</li>
+                <li>Comedor</li>
+                <li>Vajillas</li>
+                <li>Microondas</li>
+                <li>Refrigerador</li>
+                <li>Sala de Descanso</li>
+              </ul>
+            </div>
+          </div>
+          <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+            <span>Desplázate para ver más</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Suite Familiar -->
+    <div class="habModal-overlay" id="habModal-suite-familiar">
+      <div class="habModal-content">
+        <div class="habModal-header">
+          <h3 class="habModal-title">SUITE FAMILIAR</h3>
+          <button class="habModal-close">&times;</button>
+        </div>
+        <div class="habModal-slider">
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877493/hab-matrimonial-02_uwwsjr.webp"
+                  alt="Suite Familiar 1"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877461/hab-matrimonial-01_s0i10z.webp"
+                  alt="Suite Familiar 2"
+                />
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+        <div class="habModal-body">
+          <div class="habModal-info-header">
+            <div class="habModal-room-desc">
+              <i class="fas fa-bed"></i>
+              <span
+                >1 cama individual ½ y 1 cama 2 plazas, vista a la ciudad</span
+              >
+            </div>
+            <button class="habModal-reserve-btn">
+              <i class="fas fa-bell"></i>
+              Reservar
+            </button>
+          </div>
+
+          <div class="habModal-amenities">
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-bed"></i>
+                <span>Habitaciones</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Servicios de higiene y confort</li>
+                <li>Camas y ropa de cama</li>
+                <li>Ocupación máxima: 3 a 4</li>
+                <li>Camas plegables permitidas: 1</li>
+                <li>
+                  Colchón con cubierta acolchada, colchón de plumas y edredón
+                </li>
+                <li>Baño Privado</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-shower"></i>
+                <span>Servicios de higiene y confort</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Papel higiénico</li>
+                <li>Toallas</li>
+                <li>Bañera o ducha</li>
+                <li>Artículos de aseo gratis</li>
+                <li>Secador de pelo</li>
+                <li>Ducha</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-tv"></i>
+                <span>Equipamiento audiovisual y tecnológico</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>TV de pantalla plana</li>
+                <li>Canales por cable</li>
+                <li>Wifi</li>
+                <li>Desayuno Buffet Continental</li>
+                <li>Frigobar</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-kitchen-set"></i>
+                <span>Cocina</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Zona de estar</li>
+                <li>Productos de limpieza</li>
+                <li>Comedor</li>
+                <li>Vajillas</li>
+                <li>Microondas</li>
+                <li>Sala de Descanso</li>
+              </ul>
+            </div>
+          </div>
+          <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+            <span>Desplázate para ver más</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      // Variables globales
+      let currentSlide = {};
+      let swipers = {};
+
+      // Inicialización cuando el DOM esté listo
+      document.addEventListener("DOMContentLoaded", function () {
+        initializeAnimations();
+        initializeModals();
+        initializeSwiperSliders();
+        setupModalScrollEffects();
+      });
+
+      // Animaciones de entrada
+      function initializeAnimations() {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const section = entry.target;
+                section.classList.add("animate");
+
+                // Animar elementos individualmente
+                setTimeout(() => {
+                  const rooms = section.querySelectorAll(".habInfo-room");
+                  rooms.forEach((room, index) => {
+                    setTimeout(() => {
+                      room.classList.add("animate");
+                    }, index * 200);
+                  });
+                }, 300);
+              }
+            });
+          },
+          {
+            threshold: 0.2,
+            rootMargin: "0px 0px -50px 0px",
+          }
+        );
+
+        const section = document.getElementById("habInfo-section");
+        if (section) {
+          observer.observe(section);
+        }
+      }
+
+      // Inicializar modales
+      function initializeModals() {
+        // Agregar event listeners para abrir modales
+        document.querySelectorAll(".habInfo-room").forEach((room) => {
+          room.addEventListener("click", function () {
+            const roomType = this.getAttribute("data-room");
+            const modal = document.getElementById(`habModal-${roomType}`);
+            if (modal) {
+              openModal(modal);
+            }
+          });
+        });
+
+        // Agregar event listeners para cerrar modales
+        document.querySelectorAll(".habModal-close").forEach((closeBtn) => {
+          closeBtn.addEventListener("click", function () {
+            const modal = this.closest(".habModal-overlay");
+            closeModal(modal);
+          });
+        });
+
+        // Cerrar modal al hacer clic en el overlay
+        document.querySelectorAll(".habModal-overlay").forEach((overlay) => {
+          overlay.addEventListener("click", function (e) {
+            if (e.target === this) {
+              closeModal(this);
+            }
+          });
+        });
+
+        // Cerrar modal con tecla ESC
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            const activeModal = document.querySelector(
+              ".habModal-overlay.active"
+            );
+            if (activeModal) {
+              closeModal(activeModal);
+            }
+          }
+        });
+      }
+
+      // Inicializar sliders Swiper
+      function initializeSwiperSliders() {
+        document.querySelectorAll(".habModal-overlay").forEach((modal) => {
+          const roomType = modal.id.replace("habModal-", "");
+          const swiperEl = modal.querySelector(".swiper");
+
+          swipers[roomType] = new Swiper(swiperEl, {
+            loop: true,
+            pagination: {
+              el: ".swiper-pagination",
+              clickable: true,
+            },
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+          });
+        });
+      }
+
+      // Configurar efectos de scroll en modales
+      function setupModalScrollEffects() {
+        document.querySelectorAll(".habModal-body").forEach((body) => {
+          body.addEventListener("scroll", function () {
+            const modalContent = this.closest(".habModal-content");
+            if (this.scrollTop > 20) {
+              modalContent.classList.add("scrolled");
+            } else {
+              modalContent.classList.remove("scrolled");
+            }
+          });
+        });
+      }
+
+      // Funciones de modal
+      function openModal(modal) {
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+
+        // Inicializar swiper para este modal si no está inicializado
+        const roomType = modal.id.replace("habModal-", "");
+        if (!swipers[roomType]) {
+          const swiperEl = modal.querySelector(".swiper");
+          swipers[roomType] = new Swiper(swiperEl, {
+            loop: true,
+            pagination: {
+              el: ".swiper-pagination",
+              clickable: true,
+            },
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+          });
+        }
+
+        // Resetear estado de scroll
+        const modalContent = modal.querySelector(".habModal-content");
+        modalContent.classList.remove("scrolled");
+
+        // Efecto de entrada suave
+        setTimeout(() => {
+          modal.style.backdropFilter = "blur(5px)";
+        }, 100);
+      }
+
+      function closeModal(modal) {
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
+        modal.style.backdropFilter = "none";
+      }
+
+      // Preload de imágenes del modal para mejor performance
+      function preloadModalImages() {
+        const modalImages = [
+          "https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877469/suite-junior-04_fva2hx.webp",
+          "https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877463/suite-junior-03_itphi8.webp",
+          "https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877452/hab-matrimonial-02_1_nbupt8.webp",
+          "https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877455/hab-matrimonial-03_vyqzbe.webp",
+        ];
+
+        modalImages.forEach((src) => {
+          const img = new Image();
+          img.src = src;
+        });
+      }
+
+      // Inicializar efectos adicionales
+      document.addEventListener("DOMContentLoaded", function () {
+        preloadModalImages();
+      });
+
+      // Smooth scroll para mejor UX
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>

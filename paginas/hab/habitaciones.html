@@ -26,6 +26,12 @@
       href="https://fonts.googleapis.com/css2?family=Overlock:wght@400&family=Oswald:wght@300&family=Open+Sans:wght@600&display=swap"
       rel="stylesheet"
     />
+
+    <!--swiper.js-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
   </head>
   <body>
     <!-- Header que aparece al hacer scroll -->
@@ -76,8 +82,752 @@
         </ul>
       </nav>
     </header>
-    <!-- Sección de habitaciones -->
-     
+    <!-- Modal de navegación hamburger - CORREGIDO -->
+    <div class="hamburger-modal">
+      <button class="hamburger-close" aria-label="Cerrar menú">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="hamburger-content">
+        <div class="hamburger-logo">
+          <img
+            src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756137794/f8da8817-fa9e-4cfe-b860-4f321a3e49f4.png"
+            alt="Luxstone Hotel"
+          />
+        </div>
+
+        <div class="hamburger-nav-container">
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line-marker"></div>
+
+          <ul class="hamburger-nav" role="menubar">
+            <li class="hamburger-nav-item" role="none">
+              <a
+                href="#home"
+                class="hamburger-nav-link"
+                role="menuitem"
+                aria-current="page"
+              >
+                <span class="hamburger-nav-icon"
+                  ><i class="fas fa-home"></i
+                ></span>
+                Hogar
+              </a>
+            </li>
+            <li class="hamburger-nav-item" role="none">
+              <a href="#rooms" class="hamburger-nav-link" role="menuitem">
+                <span class="hamburger-nav-icon"
+                  ><i class="fas fa-bed"></i
+                ></span>
+                Habitaciones
+              </a>
+            </li>
+            <li class="hamburger-nav-item" role="none">
+              <a href="#services" class="hamburger-nav-link" role="menuitem">
+                <span class="hamburger-nav-icon"
+                  ><i class="fas fa-concierge-bell"></i
+                ></span>
+                Servicios
+              </a>
+            </li>
+            <li class="hamburger-nav-item" role="none">
+              <a href="#packages" class="hamburger-nav-link" role="menuitem">
+                <span class="hamburger-nav-icon"
+                  ><i class="fas fa-gift"></i
+                ></span>
+                Paquetes
+              </a>
+            </li>
+            <li class="hamburger-nav-item" role="none">
+              <a href="#attractions" class="hamburger-nav-link" role="menuitem">
+                <span class="hamburger-nav-icon"
+                  ><i class="fas fa-map-marked-alt"></i
+                ></span>
+                Atracciones cercanas
+              </a>
+            </li>
+            <li class="hamburger-nav-item" role="none">
+              <a href="#reserve" class="hamburger-nav-link" role="menuitem">
+                <span class="hamburger-nav-icon"
+                  ><i class="fas fa-calendar-check"></i
+                ></span>
+                Reservar
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!--habitaciones hero -->
+    <section class="heroHab-container">
+      <!-- Navigation Menu -->
+      <button class="hero-menu" aria-label="Abrir menú">
+        <img
+          src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756138934/a20c0d45-de84-4825-8ca2-f7b094a3f7b8.png"
+          alt="Menú"
+        />
+      </button>
+      <div class="heroHab-background"></div>
+      <div class="heroHab-overlay"></div>
+      <div class="heroHab-content">
+        <img
+          src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756137794/f8da8817-fa9e-4cfe-b860-4f321a3e49f4.png"
+          alt="Logo"
+          class="heroHab-logo"
+        />
+        <h1 class="heroHab-title">HABITACION & SUITE</h1>
+        <div class="heroHab-arrow">
+          <i class="fas fa-chevron-down"></i>
+        </div>
+      </div>
+    </section>
+    <!-- Seccion de habitaciones -->
+    <!-- Sección Principal de Habitaciones -->
+    <section class="habInfo-section" id="habInfo-section">
+      <div class="habInfo-header">
+        <h2 class="habInfo-title">Excelencia y confort en cada estancia</h2>
+        <p class="habInfo-description">
+          Habitaciones privadas, suites familiares y espacios con cocina propia,
+          ideales para estancias largas o cortas.
+        </p>
+      </div>
+
+      <div class="habInfo-grid">
+        <!-- Suite Junior -->
+        <div class="habInfo-room" data-room="suite-junior">
+          <img
+            src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877446/suite-junior-02_gcbvrn.webp"
+            alt="Suite Junior"
+          />
+          <div class="habInfo-overlay">
+            <h3 class="habInfo-room-name">SUITE JUNIOR</h3>
+            <p class="habInfo-capacity">CAPACIDAD DE 1 PERSONA</p>
+          </div>
+        </div>
+
+        <!-- Habitación Matrimonial -->
+        <div class="habInfo-room" data-room="hab-matrimonial">
+          <img
+            src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877456/hab-matrimonial-01_1_uiabqz.webp"
+            alt="Habitación Matrimonial"
+          />
+          <div class="habInfo-overlay">
+            <h3 class="habInfo-room-name">HABITACION MATRIMONIAL</h3>
+            <p class="habInfo-capacity">CAPACIDAD DE 2 PERSONAS</p>
+          </div>
+        </div>
+
+        <!-- Suite Ejecutiva Matrimonial -->
+        <div class="habInfo-room" data-room="suite-ejecutiva">
+          <img
+            src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877480/suite-matrimonial-02_d2wuam.webp"
+            alt="Suite Ejecutiva Matrimonial"
+          />
+          <div class="habInfo-overlay">
+            <h3 class="habInfo-room-name">SUITE EJECUTIVA MATRIMONIAL</h3>
+            <p class="habInfo-capacity">CAPACIDAD DE 2 PERSONAS</p>
+          </div>
+        </div>
+
+        <!-- Business Matrimonial -->
+        <div class="habInfo-room" data-room="business-matrimonial">
+          <img
+            src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877494/suite-matrimonial-_1_jjlthr.webp"
+            alt="Business Matrimonial"
+          />
+          <div class="habInfo-overlay">
+            <h3 class="habInfo-room-name">BUSINESS MATRIMONIAL</h3>
+            <p class="habInfo-capacity">CAPACIDAD DE 2 PERSONAS</p>
+          </div>
+        </div>
+
+        <!-- Suite Familiar (Centro) -->
+        <div class="habInfo-room habInfo-center" data-room="suite-familiar">
+          <img
+            src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877493/hab-matrimonial-02_uwwsjr.webp"
+            alt="Suite Familiar"
+          />
+          <div class="habInfo-overlay">
+            <h3 class="habInfo-room-name">SUITE FAMILIAR</h3>
+            <p class="habInfo-capacity">CAPACIDAD DE 4 PERSONAS</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modales de Habitaciones -->
+    <!-- Modal Suite Junior -->
+    <div class="habModal-overlay" id="habModal-suite-junior">
+      <div class="habModal-content">
+        <div class="habModal-header">
+          <h3 class="habModal-title">SUITE JUNIOR</h3>
+          <button class="habModal-close">&times;</button>
+        </div>
+        <div class="habModal-slider">
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877469/suite-junior-04_fva2hx.webp"
+                  alt="Suite Junior 1"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877463/suite-junior-03_itphi8.webp"
+                  alt="Suite Junior 2"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877446/suite-junior-02_gcbvrn.webp"
+                  alt="Suite Junior 3"
+                />
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+        <div class="habModal-body">
+          <div class="habModal-info-header">
+            <div class="habModal-room-desc">
+              <i class="fas fa-bed"></i>
+              <span>1 cama doble grande, vista a la ciudad</span>
+            </div>
+            <button class="habModal-reserve-btn">
+              <i class="fas fa-bell"></i>
+              Reservar
+            </button>
+          </div>
+
+          <div class="habModal-amenities">
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-bed"></i>
+                <span>Habitaciones</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Camas y ropa de cama</li>
+                <li>Ocupación máxima: 1</li>
+                <li>Camas plegables permitidas: 1</li>
+                <li>
+                  Colchón con cubierta acolchada, colchón de plumas y edredón
+                </li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-shower"></i>
+                <span>Servicios de higiene y confort</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Papel higiénico</li>
+                <li>Toallas</li>
+                <li>Bañera o ducha</li>
+                <li>2 Baños</li>
+                <li>Artículos de aseo gratis</li>
+                <li>Secador de pelo</li>
+                <li>Ducha</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-tv"></i>
+                <span>Equipamiento audiovisual y tecnológico</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>TV de pantalla plana</li>
+                <li>Canales por cable</li>
+                <li>Wifi</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-utensils"></i>
+                <span>Comida y bebida</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Desayuno Bufet Continental</li>
+                <li>Frigobar</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-kitchen-set"></i>
+                <span>Cocina</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Productos de limpieza</li>
+                <li>Comedor</li>
+                <li>Microondas</li>
+                <li>Refrigerador</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-couch"></i>
+                <span>Zona de estar</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Sala de Descanso</li>
+              </ul>
+            </div>
+          </div>
+          <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+            <span>Desplázate para ver más</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Habitación Matrimonial -->
+    <div class="habModal-overlay" id="habModal-hab-matrimonial">
+      <div class="habModal-content">
+        <div class="habModal-header">
+          <h3 class="habModal-title">HABITACION MATRIMONIAL</h3>
+          <button class="habModal-close">&times;</button>
+        </div>
+        <div class="habModal-slider">
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877452/hab-matrimonial-02_1_nbupt8.webp"
+                  alt="Habitación Matrimonial 1"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877456/hab-matrimonial-01_1_uiabqz.webp"
+                  alt="Habitación Matrimonial 2"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877455/hab-matrimonial-03_vyqzbe.webp"
+                  alt="Habitación Matrimonial 3"
+                />
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+        <div class="habModal-body">
+          <div class="habModal-info-header">
+            <div class="habModal-room-desc">
+              <i class="fas fa-bed"></i>
+              <span>1 cama de 2 plazas, vista a la ciudad</span>
+            </div>
+            <button class="habModal-reserve-btn">
+              <i class="fas fa-bell"></i>
+              Reservar
+            </button>
+          </div>
+
+          <div class="habModal-amenities">
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-bed"></i>
+                <span>Habitaciones</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Servicios de higiene y confort</li>
+                <li>Camas y ropa de cama</li>
+                <li>Ocupación máxima: 2</li>
+                <li>Camas plegables permitidas: 1</li>
+                <li>
+                  Colchón con cubierta acolchada, colchón de plumas y edredón
+                </li>
+                <li>Baño Compartido</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-shower"></i>
+                <span>Servicios de higiene y confort</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Papel higiénico</li>
+                <li>Toallas</li>
+                <li>Bañera o ducha</li>
+                <li>Artículos de aseo gratis</li>
+                <li>Secador de pelo</li>
+                <li>Ducha</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-tv"></i>
+                <span>Equipamiento audiovisual y tecnológico</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Desayuno Buffet Continental</li>
+                <li>TV de pantalla plana</li>
+                <li>Canales por cable</li>
+                <li>Wifi</li>
+              </ul>
+            </div>
+          </div>
+          <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+            <span>Desplázate para ver más</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Suite Ejecutiva -->
+    <div class="habModal-overlay" id="habModal-suite-ejecutiva">
+      <div class="habModal-content">
+        <div class="habModal-header">
+          <h3 class="habModal-title">SUITE EJECUTIVA MATRIMONIAL</h3>
+          <button class="habModal-close">&times;</button>
+        </div>
+        <div class="habModal-slider">
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877476/suite-matrimonial-01_tzm4oy.webp"
+                  alt="Suite Ejecutiva 1"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877480/suite-matrimonial-03_vkgcp5.webp"
+                  alt="Suite Ejecutiva 2"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877480/suite-matrimonial-02_d2wuam.webp"
+                  alt="Suite Ejecutiva 3"
+                />
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+        <div class="habModal-body">
+          <div class="habModal-info-header">
+            <div class="habModal-room-desc">
+              <i class="fas fa-bed"></i>
+              <span>1 cama de 2 plazas, vista a la ciudad</span>
+            </div>
+            <button class="habModal-reserve-btn">
+              <i class="fas fa-bell"></i>
+              Reservar
+            </button>
+          </div>
+
+          <div class="habModal-amenities">
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-bed"></i>
+                <span>Habitaciones</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Servicios de higiene y confort</li>
+                <li>Camas y ropa de cama</li>
+                <li>Ocupación máxima: 2</li>
+                <li>Camas plegables permitidas: 1</li>
+                <li>
+                  Colchón con cubierta acolchada, colchón de plumas y edredón
+                </li>
+                <li>Baño Privado</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-shower"></i>
+                <span>Servicios de higiene y confort</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Papel higiénico</li>
+                <li>Toallas</li>
+                <li>Bañera o ducha</li>
+                <li>Artículos de aseo gratis</li>
+                <li>Secador de pelo</li>
+                <li>Ducha</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-tv"></i>
+                <span>Equipamiento audiovisual y tecnológico</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>TV de pantalla plana</li>
+                <li>Canales por cable</li>
+                <li>Wifi</li>
+                <li>Desayuno Buffet Continental</li>
+                <li>Frigobar</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-kitchen-set"></i>
+                <span>Cocina</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Comedor</li>
+                <li>Zona de estar</li>
+                <li>Sala de Descanso</li>
+              </ul>
+            </div>
+          </div>
+          <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+            <span>Desplázate para ver más</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Business Matrimonial -->
+    <div class="habModal-overlay" id="habModal-business-matrimonial">
+      <div class="habModal-content">
+        <div class="habModal-header">
+          <h3 class="habModal-title">BUSINESS MATRIMONIAL</h3>
+          <button class="habModal-close">&times;</button>
+        </div>
+        <div class="habModal-slider">
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877468/suite-matrimonial-_3_1_kz0gjk.webp"
+                  alt="Business Matrimonial 1"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877473/suite-matrimonial-_4_oo0mde.webp"
+                  alt="Business Matrimonial 2"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877494/suite-matrimonial-_1_jjlthr.webp"
+                  alt="Business Matrimonial 3"
+                />
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+        <div class="habModal-body">
+          <div class="habModal-info-header">
+            <div class="habModal-room-desc">
+              <i class="fas fa-bed"></i>
+              <span>1 cama de 2 plazas, vista a la ciudad</span>
+            </div>
+            <button class="habModal-reserve-btn">
+              <i class="fas fa-bell"></i>
+              Reservar
+            </button>
+          </div>
+
+          <div class="habModal-amenities">
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-bed"></i>
+                <span>Habitaciones</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Camas y ropa de cama</li>
+                <li>Ocupación máxima: 2</li>
+                <li>Camas plegables permitidas: 1</li>
+                <li>
+                  Colchón con cubierta acolchada, colchón de plumas y edredón
+                </li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-shower"></i>
+                <span>Servicios de higiene y confort</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Baño Privado</li>
+                <li>Papel higiénico</li>
+                <li>Toallas</li>
+                <li>Bañera o ducha</li>
+                <li>Artículos de aseo gratis</li>
+                <li>Secador de pelo</li>
+                <li>Ducha</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-tv"></i>
+                <span>Equipamiento audiovisual y tecnológico</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>TV de pantalla plana</li>
+                <li>Canales por cable</li>
+                <li>Wifi</li>
+                <li>Frigobar</li>
+                <li>Desayuno Buffet Continental</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-kitchen-set"></i>
+                <span>Cocina</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Zona de estar</li>
+                <li>Productos de limpieza</li>
+                <li>Comedor</li>
+                <li>Vajillas</li>
+                <li>Microondas</li>
+                <li>Refrigerador</li>
+                <li>Sala de Descanso</li>
+              </ul>
+            </div>
+          </div>
+          <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+            <span>Desplázate para ver más</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Suite Familiar -->
+    <div class="habModal-overlay" id="habModal-suite-familiar">
+      <div class="habModal-content">
+        <div class="habModal-header">
+          <h3 class="habModal-title">SUITE FAMILIAR</h3>
+          <button class="habModal-close">&times;</button>
+        </div>
+        <div class="habModal-slider">
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877493/hab-matrimonial-02_uwwsjr.webp"
+                  alt="Suite Familiar 1"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877461/hab-matrimonial-01_s0i10z.webp"
+                  alt="Suite Familiar 2"
+                />
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+        <div class="habModal-body">
+          <div class="habModal-info-header">
+            <div class="habModal-room-desc">
+              <i class="fas fa-bed"></i>
+              <span
+                >1 cama individual ½ y 1 cama 2 plazas, vista a la ciudad</span
+              >
+            </div>
+            <button class="habModal-reserve-btn">
+              <i class="fas fa-bell"></i>
+              Reservar
+            </button>
+          </div>
+
+          <div class="habModal-amenities">
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-bed"></i>
+                <span>Habitaciones</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Servicios de higiene y confort</li>
+                <li>Camas y ropa de cama</li>
+                <li>Ocupación máxima: 3 a 4</li>
+                <li>Camas plegables permitidas: 1</li>
+                <li>
+                  Colchón con cubierta acolchada, colchón de plumas y edredón
+                </li>
+                <li>Baño Privado</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-shower"></i>
+                <span>Servicios de higiene y confort</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Papel higiénico</li>
+                <li>Toallas</li>
+                <li>Bañera o ducha</li>
+                <li>Artículos de aseo gratis</li>
+                <li>Secador de pelo</li>
+                <li>Ducha</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-tv"></i>
+                <span>Equipamiento audiovisual y tecnológico</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>TV de pantalla plana</li>
+                <li>Canales por cable</li>
+                <li>Wifi</li>
+                <li>Desayuno Buffet Continental</li>
+                <li>Frigobar</li>
+              </ul>
+            </div>
+
+            <div class="habModal-amenity-group">
+              <div class="habModal-amenity-title">
+                <i class="fas fa-kitchen-set"></i>
+                <span>Cocina</span>
+              </div>
+              <ul class="habModal-amenity-list">
+                <li>Zona de estar</li>
+                <li>Productos de limpieza</li>
+                <li>Comedor</li>
+                <li>Vajillas</li>
+                <li>Microondas</li>
+                <li>Sala de Descanso</li>
+              </ul>
+            </div>
+          </div>
+          <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+            <span>Desplázate para ver más</span>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Footer -->
     <footer class="footer-section">
       <!-- Sección principal con imagen de fondo -->
@@ -195,6 +945,7 @@
       </div>
     </footer>
     <!-- Script -->
-    <script src="assets/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="../../assets/scriptHab.js"></script>
   </body>
 </html>
