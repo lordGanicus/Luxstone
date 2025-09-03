@@ -32,8 +32,8 @@
       /* Sección Principal */
       .habInfo-section {
         font-family: "Open Sans", sans-serif;
-        padding: 80px 20px;
-        max-width: 1200px;
+        padding: 80px 0px;
+        /*max-width: 1800px;*/
         margin: 0 auto;
         opacity: 0;
         transform: translateY(50px);
@@ -91,8 +91,8 @@
 
       .habInfo-room {
         position: relative;
-        height: 300px;
-        border-radius: 15px;
+        height: 400px;
+        border-radius: 2px;
         overflow: hidden;
         cursor: pointer;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -117,6 +117,12 @@
       }
       .habInfo-room:nth-child(4) {
         transition-delay: 0.4s;
+      }
+      .habInfo-room:nth-child(5) {
+        transition-delay: 0.5s;
+      }
+      .habInfo-promo-card {
+        transition-delay: 0.6s;
       }
 
       .habInfo-room img {
@@ -183,19 +189,60 @@
         transition-delay: 0.4s;
       }
 
-      .habInfo-center {
-        grid-column: 1 / -1;
-        justify-self: center;
-        max-width: 500px;
+      /* Nuevo card promocional */
+      .habInfo-promo-card {
+        background-color: #fcc342;
+        border-radius: 2px;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         transform: translateY(50px);
         opacity: 0;
         transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        transition-delay: 0.5s;
       }
 
-      .habInfo-center.animate {
+      .habInfo-promo-card.animate {
         transform: translateY(0);
         opacity: 1;
+      }
+
+      .habInfo-promo-title {
+        font-family: "Oswald", sans-serif;
+        font-weight: 500;
+        font-size: 1.8rem;
+        color: #2c3e50;
+        margin-bottom: 15px;
+      }
+
+      .habInfo-promo-text {
+        font-family: "Open Sans", sans-serif;
+        font-size: 1.1rem;
+        color: #2c3e50;
+        margin-bottom: 25px;
+        line-height: 1.6;
+      }
+
+      .habInfo-promo-btn {
+        background: white;
+        color: #2c3e50;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 4px;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .habInfo-promo-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
       }
 
       /* Modal Styles */
@@ -268,6 +315,7 @@
       }
 
       /* Swiper Styles */
+
       .habModal-slider {
         height: 350px;
         position: relative;
@@ -299,7 +347,8 @@
       }
 
       .habModal-content.scrolled .swiper-slide img {
-        transform: scale(0.9);
+        transform: translateY(-50px); /* súbelo 10px hacia arriba */
+        transition: transform 0.3s ease; /* para que sea suave */
       }
 
       .swiper-pagination-bullet {
@@ -474,6 +523,28 @@
         padding: 3px 0;
       }
 
+      /* Boton  */
+      .swiper-button-next,
+      .swiper-button-prev {
+        display: none !important;
+        color: rgb(0, 0, 0) !important;
+        width: calc(var(--swiper-navigation-size) / 60 * 35) !important;
+      }
+
+      .swiper-pagination-bullet-active {
+        background: #000000c9 !important;
+      }
+
+      .swiper-button-next,
+      .swiper-button-prev {
+        color: white;
+        background: rgba(0, 0, 0, 0.5);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+
       /* Responsive */
       @media (max-width: 992px) {
         .habModal-content {
@@ -557,6 +628,18 @@
         .habModal-amenity-list {
           font-size: 0.9rem;
         }
+
+        .habInfo-promo-card {
+          padding: 25px;
+        }
+
+        .habInfo-promo-title {
+          font-size: 1.5rem;
+        }
+
+        .habInfo-promo-text {
+          font-size: 1rem;
+        }
       }
 
       /* Para pantallas grandes */
@@ -639,8 +722,8 @@
           </div>
         </div>
 
-        <!-- Suite Familiar (Centro) -->
-        <div class="habInfo-room habInfo-center" data-room="suite-familiar">
+        <!-- Suite Familiar -->
+        <div class="habInfo-room" data-room="suite-familiar">
           <img
             src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877493/hab-matrimonial-02_uwwsjr.webp"
             alt="Suite Familiar"
@@ -649,6 +732,16 @@
             <h3 class="habInfo-room-name">SUITE FAMILIAR</h3>
             <p class="habInfo-capacity">CAPACIDAD DE 4 PERSONAS</p>
           </div>
+        </div>
+
+        <!-- Nuevo card promocional -->
+        <div class="habInfo-promo-card">
+          <h3 class="habInfo-promo-title">RESERVA DIRECTAMENTE</h3>
+          <p class="habInfo-promo-text">
+            Para nuestra garantía de la mejor tarifa. Tendrás la mejor tarifa y
+            un desayuno de cortesía.
+          </p>
+          <button class="habInfo-promo-btn">RESERVAR</button>
         </div>
       </div>
     </section>
@@ -711,7 +804,7 @@
                 <li>Ocupación máxima: 1</li>
                 <li>Camas plegables permitidas: 1</li>
                 <li>
-                  Colchón con cubierta acolchada, colchón de plumas y edredón
+                  Colchón con cubierta acolchada, colchón de plumas и edredón
                 </li>
               </ul>
             </div>
@@ -1252,7 +1345,9 @@
 
                 // Animar elementos individualmente
                 setTimeout(() => {
-                  const rooms = section.querySelectorAll(".habInfo-room");
+                  const rooms = section.querySelectorAll(
+                    ".habInfo-room, .habInfo-promo-card"
+                  );
                   rooms.forEach((room, index) => {
                     setTimeout(() => {
                       room.classList.add("animate");

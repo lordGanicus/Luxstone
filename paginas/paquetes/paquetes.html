@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotel Luxstone - Executive & Suites</title>
+    <!-- Font Awesome para iconos -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../../assets/style.css" />
+    <!--Fuentes-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Overlock:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Overlock:wght@400&family=Oswald:wght@300&family=Open+Sans:wght@600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--swiper.js-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+  </head>
+  <body>
+    <!-- Header que aparece al hacer scroll -->
+    <header class="header" role="banner">
+      <div class="header-line"></div>
+      <div class="header-logo">
+        <img
+          src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756139872/9708fec7-9b99-47d5-9119-7f51ab307361.png"
+          alt="Luxstone Hotel"
+        />
+      </div>
+      <button class="header-reserva-btn">Reservar</button>
+      <nav
+        class="header-nav"
+        role="navigation"
+        aria-label="Navegación principal"
+      >
+        <ul class="header-nav-list" role="menubar">
+          <li class="header-nav-item" role="none">
+            <a
+              href="#inicio"
+              class="header-nav-link"
+              role="menuitem"
+              aria-current="page"
+              >Inicio</a
+            >
+          </li>
+          <li class="header-nav-item" role="none">
+            <a href="#habitaciones" class="header-nav-link" role="menuitem"
+              >Habitaciones</a
+            >
+          </li>
+          <li class="header-nav-item" role="none">
+            <a href="#servicios" class="header-nav-link" role="menuitem"
+              >Servicios</a
+            >
+          </li>
+          <li class="header-nav-item" role="none">
+            <a href="#atracciones" class="header-nav-link" role="menuitem"
+              >Atracciones</a
+            >
+          </li>
+          <li class="header-nav-item" role="none">
+            <a href="#paquetes" class="header-nav-link" role="menuitem"
+              >Paquetes</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <!-- Modal de navegación hamburger - CORREGIDO -->
+    <div class="hamburger-modal">
+      <button class="hamburger-close" aria-label="Cerrar menú">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="hamburger-content">
+        <div class="hamburger-logo">
+          <img
+            src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756137794/f8da8817-fa9e-4cfe-b860-4f321a3e49f4.png"
+            alt="Luxstone Hotel"
+          />
+        </div>
+
+        <div class="hamburger-nav-container">
+          <div class="hamburger-line"></div>
+          <div class="hamburger-line-marker"></div>
+
+          <ul class="hamburger-nav" role="menubar">
+            <li class="hamburger-nav-item" role="none">
+              <a
+                href="#home"
+                class="hamburger-nav-link"
+                role="menuitem"
+                aria-current="page"
+              >
+                <span class="hamburger-nav-icon"
+                  ><i class="fas fa-home"></i
+                ></span>
+                Hogar
+              </a>
+            </li>
+            <li class="hamburger-nav-item" role="none">
+              <a href="#rooms" class="hamburger-nav-link" role="menuitem">
+                <span class="hamburger-nav-icon"
+                  ><i class="fas fa-bed"></i
+                ></span>
+                Habitaciones
+              </a>
+            </li>
+            <li class="hamburger-nav-item" role="none">
+              <a href="#services" class="hamburger-nav-link" role="menuitem">
+                <span class="hamburger-nav-icon"
+                  ><i class="fas fa-concierge-bell"></i
+                ></span>
+                Servicios
+              </a>
+            </li>
+            <li class="hamburger-nav-item" role="none">
+              <a href="#packages" class="hamburger-nav-link" role="menuitem">
+                <span class="hamburger-nav-icon"
+                  ><i class="fas fa-gift"></i
+                ></span>
+                Paquetes
+              </a>
+            </li>
+            <li class="hamburger-nav-item" role="none">
+              <a href="#attractions" class="hamburger-nav-link" role="menuitem">
+                <span class="hamburger-nav-icon"
+                  ><i class="fas fa-map-marked-alt"></i
+                ></span>
+                Atracciones cercanas
+              </a>
+            </li>
+            <li class="hamburger-nav-item" role="none">
+              <a href="#reserve" class="hamburger-nav-link" role="menuitem">
+                <span class="hamburger-nav-icon"
+                  ><i class="fas fa-calendar-check"></i
+                ></span>
+                Reservar
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!--habitaciones hero -->
+    <section class="heroHab-container">
+      <!-- Navigation Menu -->
+      <button class="hero-menu" aria-label="Abrir menú">
+        <img
+          src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756138934/a20c0d45-de84-4825-8ca2-f7b094a3f7b8.png"
+          alt="Menú"
+        />
+      </button>
+      <div class="heroHab-background" id="heroPaquete"></div>
+      <div class="heroHab-overlay"></div>
+      <div class="heroHab-content">
+        <img
+          src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756137794/f8da8817-fa9e-4cfe-b860-4f321a3e49f4.png"
+          alt="Logo"
+          class="heroHab-logo"
+        />
+        <!-- 
+            <h1 class="heroHab-title">HABITACION & SUITE</h1> 
+         -->
+
+        <div class="heroHab-arrow">
+          <i class="fas fa-chevron-down"></i>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer-section">
+      <!-- Sección principal con imagen de fondo -->
+      <div class="footer-main">
+        <div class="footer-overlay"></div>
+        <div class="footer-content">
+          <!-- Contenido principal dividido en dos partes -->
+          <div class="footer-main-content">
+            <!-- Logo a la izquierda (1/3 del ancho) -->
+            <div class="footer-left-section">
+              <img
+                src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756137794/f8da8817-fa9e-4cfe-b860-4f321a3e49f4.png"
+                alt="Luxstone Executive & Suites Logo"
+                class="footer-logo"
+              />
+            </div>
+
+            <!-- Contenido a la derecha (2/3 del ancho) -->
+            <div class="footer-right-section">
+              <!-- Métodos de pago (parte superior) -->
+              <div class="footer-payments">
+                <h3>Nuestros Pagos:</h3>
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756745652/a9ce49e9-62f3-4355-8085-158f5cae2a30.png"
+                  alt="Métodos de pago aceptados: UnionPay, Visa, Maestro, JCB, PayPal, MasterCard"
+                  class="footer-payment-icons"
+                />
+              </div>
+
+              <!-- Dirección y Contacto (parte media) -->
+              <div class="footer-info-sections">
+                <!-- Dirección -->
+                <div class="footer-address">
+                  <h3>Dirección:</h3>
+                  <p>
+                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                    Avenida 6 de Agosto entre Rozendo Gutierrez Edificio Torre
+                    Nº 2255, Zona Sopochi, La Paz, Bolivia
+                  </p>
+                  <a href="mailto:luxstonercp@gmail.com" class="footer-email">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                    luxstonercp@gmail.com
+                  </a>
+                </div>
+
+                <!-- Contacto -->
+                <div class="footer-contact">
+                  <h3>Contáctanos:</h3>
+                  <div class="footer-phone">
+                    <i class="fas fa-phone" aria-hidden="true"></i>
+                    <a
+                      href="tel:+59165528468"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      (+591) 65528468
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <!-- Línea divisoria -->
+              <hr class="footer-divider" />
+              <!-- Redes sociales (parte inferior) -->
+              <nav class="footer-social" aria-label="Redes sociales">
+                <a
+                  href="https://www.facebook.com/profile.php?id=61557240494194"
+                  aria-label="Síguenos en Facebook"
+                  class="footer-social-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="footer-social-icon">
+                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                  </div>
+                </a>
+
+                <a
+                  href="https://wa.me/59165528468"
+                  aria-label="Contáctanos por WhatsApp"
+                  class="footer-social-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="footer-social-icon">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                  </div>
+                </a>
+
+                <a
+                  href="https://www.tiktok.com/@hotel.luxstone?_t=ZM-8zMwrI2UOpR&_r=1"
+                  aria-label="Síguenos en TikTok"
+                  class="footer-social-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="footer-social-icon">
+                    <i class="fab fa-tiktok" aria-hidden="true"></i>
+                  </div>
+                </a>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Separador -->
+      <div class="footer-separator"></div>
+
+      <!-- Sección de copyright -->
+      <div class="footer-copyright">
+        <p>
+          Copyright © 2025 Luxstone Executive & Suites – Todos los derechos
+          reservados.
+        </p>
+      </div>
+    </footer>
+    <!-- Script -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="../../assets/scriptHab.js"></script>
+  </body>
+</html>

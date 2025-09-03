@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luxstone - Paquetes Especiales</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/swiper/8.4.7/swiper-bundle.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Open+Sans:wght@400;600;700;800&family=Overlock:wght@400&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Open Sans", sans-serif;
+        background-color: #f8f9fa;
+      }
+
+      .paquetes-section {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 20px;
+      }
+
+      .paquetes-header {
+        text-align: center;
+        margin-bottom: 80px;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 1s ease forwards;
+      }
+
+      .paquetes-title {
+        font-family: "Oswald", sans-serif;
+        font-weight: 300;
+        font-size: 3rem;
+        color: #1d252d;
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .paquetes-title::before,
+      .paquetes-title::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 100px;
+        height: 2px;
+        background: linear-gradient(90deg, #cf9614, #c88f0e);
+      }
+
+      .paquetes-title::before {
+        left: -120px;
+      }
+
+      .paquetes-title::after {
+        right: -120px;
+      }
+
+      .paquetes-description {
+        font-family: "Overlock", cursive;
+        font-size: 1.1rem;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .paquetes-grid {
+        display: grid;
+        gap: 60px;
+      }
+
+      .paquetes-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: center;
+        opacity: 0;
+        transform: translateY(50px);
+        animation: fadeInUp 1s ease forwards;
+      }
+
+      .paquetes-item:nth-child(2) {
+        animation-delay: 0.3s;
+      }
+
+      .paquetes-item.reverse {
+        direction: rtl;
+      }
+
+      .paquetes-item.reverse > * {
+        direction: ltr;
+      }
+
+      .paquetes-image {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .paquetes-image:hover {
+        transform: translateY(-5px);
+      }
+
+      .paquetes-image img {
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .paquetes-image:hover img {
+        transform: scale(1.05);
+      }
+
+      .paquetes-card {
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .paquetes-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+      }
+
+      .paquetes-card-title {
+        font-family: "Oswald", sans-serif;
+        font-weight: 300;
+        font-size: 2.2rem;
+        color: #1d252d;
+        margin-bottom: 5px;
+      }
+
+      .paquetes-card-subtitle {
+        font-family: "Open Sans", sans-serif;
+        font-weight: 800;
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+      }
+
+      .paquetes-card-description {
+        font-family: "Open Sans", sans-serif;
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 25px;
+      }
+
+      .paquetes-detail-link {
+        display: inline-block;
+        color: #cf9614;
+        font-weight: 600;
+        text-decoration: none;
+        position: relative;
+        margin-bottom: 20px;
+        transition: color 0.3s ease;
+      }
+
+      .paquetes-detail-link::after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: #cf9614;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+
+      .paquetes-detail-link:hover::after {
+        transform: scaleX(1);
+      }
+
+      .paquetes-reserve-btn {
+        background: transparent;
+        border: 2px solid #c88f0e;
+        color: #c88f0e;
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .paquetes-reserve-btn:hover {
+        background: #c88f0e;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(200, 143, 14, 0.3);
+      }
+
+      /* Modal Styles */
+      .paquetes-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .paquetes-modal-overlay.active {
+        display: flex;
+        opacity: 1;
+      }
+
+      .paquetes-modal {
+        background: white;
+        border-radius: 20px;
+        max-width: 800px;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        transform: scale(0.8);
+        transition: transform 0.3s ease;
+        margin: 20px;
+      }
+
+      .paquetes-modal-overlay.active .paquetes-modal {
+        transform: scale(1);
+      }
+
+      .paquetes-modal-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 10;
+        font-size: 18px;
+        transition: background 0.3s ease;
+      }
+
+      .paquetes-modal-close:hover {
+        background: rgba(0, 0, 0, 0.7);
+      }
+
+      .paquetes-slider-container {
+        position: relative;
+        height: 400px;
+        border-radius: 20px 20px 0 0;
+        overflow: hidden;
+      }
+
+      .swiper {
+        width: 100%;
+        height: 100%;
+      }
+
+      .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .paquetes-modal-content {
+        padding: 30px;
+      }
+
+      .paquetes-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #000;
+      }
+
+      .paquetes-modal-title-section {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .paquetes-modal-icon {
+        width: 50px;
+        height: 50px;
+        background: #cf9614;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+      }
+
+      .paquetes-modal-titles h2 {
+        font-family: "Oswald", sans-serif;
+        font-weight: 300;
+        font-size: 2rem;
+        color: #1d252d;
+        margin: 0;
+      }
+
+      .paquetes-modal-titles h3 {
+        font-family: "Open Sans", sans-serif;
+        font-weight: 800;
+        font-size: 1rem;
+        color: #666;
+        margin: 0;
+        letter-spacing: 1px;
+      }
+
+      .paquetes-modal-reserve-btn {
+        background: linear-gradient(
+          270deg,
+          #ffd36e 0%,
+          #9e7a29 83%,
+          #967427 100%
+        );
+        border: none;
+        color: white;
+        padding: 12px 25px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: transform 0.3s ease;
+      }
+
+      .paquetes-modal-reserve-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .paquetes-modal-section {
+        margin-bottom: 30px;
+      }
+
+      .paquetes-modal-section h4 {
+        font-family: "Open Sans", sans-serif;
+        font-weight: 800;
+        font-size: 1.1rem;
+        color: #000;
+        margin-bottom: 20px;
+      }
+
+      .paquetes-modal-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .paquetes-modal-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .paquetes-modal-item-icon {
+        width: 40px;
+        height: 40px;
+        background: #cf9614;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        flex-shrink: 0;
+      }
+
+      .paquetes-modal-item-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #555;
+      }
+
+      .paquetes-divider {
+        height: 2px;
+        background: #000;
+        margin: 25px 0;
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .paquetes-title {
+          font-size: 2.2rem;
+        }
+
+        .paquetes-title::before,
+        .paquetes-title::after {
+          display: none;
+        }
+
+        .paquetes-item {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .paquetes-item.reverse {
+          direction: ltr;
+        }
+
+        .paquetes-modal {
+          margin: 10px;
+          max-height: 95vh;
+        }
+
+        .paquetes-modal-header {
+          flex-direction: column;
+          gap: 15px;
+          text-align: center;
+        }
+
+        .paquetes-modal-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="paquetes-section">
+      <header class="paquetes-header">
+        <h1 class="paquetes-title">Paquetes Especiales</h1>
+        <p class="paquetes-description">
+          Sorprende a tu pareja con nuestro Paquete Especial de Amor. Amenidades
+          románticas y espacios acogedores te esperan. Haz de tu visita a
+          Luxstone una experiencia única y memorable.
+        </p>
+      </header>
+
+      <div class="paquetes-grid">
+        <!-- Paquete Suite -->
+        <article class="paquetes-item">
+          <div class="paquetes-image">
+            <img
+              src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877516/decorado-03_lzkozl.webp"
+              alt="Suite Romántica Luxstone"
+            />
+          </div>
+          <div class="paquetes-card">
+            <h2 class="paquetes-card-title">PLAN ROMÁNTICO</h2>
+            <h3 class="paquetes-card-subtitle">SUITE</h3>
+            <p class="paquetes-card-description">
+              Nuestro Plan Romántico Suite combina lujo y calidez para parejas
+              que desean una experiencia distinta. Vive la magia del romance en
+              un ambiente elegante y exclusivo.
+            </p>
+            <a href="#" class="paquetes-detail-link" data-modal="suite"
+              >VER DETALLE</a
+            >
+            <br />
+            <button class="paquetes-reserve-btn">RESERVAR</button>
+          </div>
+        </article>
+
+        <!-- Paquete Estándar -->
+        <article class="paquetes-item reverse">
+          <div class="paquetes-image">
+            <img
+              src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756826850/08_zx4fvl.png"
+              alt="Plan Romántico Estándar"
+            />
+          </div>
+          <div class="paquetes-card">
+            <h2 class="paquetes-card-title">PLAN ROMÁNTICO</h2>
+            <h3 class="paquetes-card-subtitle">ESTÁNDAR</h3>
+            <p class="paquetes-card-description">
+              Nuestro Plan Romántico Estándar es la manera perfecta de disfrutar
+              de La Paz con tu pareja, en un ambiente íntimo y con detalles
+              preparados para el amor.
+            </p>
+            <a href="#" class="paquetes-detail-link" data-modal="estandar"
+              >VER DETALLE</a
+            >
+            <br />
+            <button class="paquetes-reserve-btn">RESERVAR</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Modal Suite -->
+    <div class="paquetes-modal-overlay" id="modal-suite">
+      <div class="paquetes-modal">
+        <button class="paquetes-modal-close">
+          <i class="fas fa-times"></i>
+        </button>
+
+        <div class="paquetes-slider-container">
+          <div class="swiper" id="swiper-suite">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877516/decorado-03_lzkozl.webp"
+                  alt="Suite Romántica 1"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877516/decorado-02_xxhklk.webp"
+                  alt="Suite Romántica 2"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877515/decorado-01_rlhwpa.webp"
+                  alt="Suite Romántica 3"
+                />
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+
+        <div class="paquetes-modal-content">
+          <div class="paquetes-modal-header">
+            <div class="paquetes-modal-title-section">
+              <div class="paquetes-modal-icon">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756937847/68b6d353-7bf4-4c30-9034-08807a6f52a2.png"
+                  alt="Cupido"
+                  style="width: 30px; height: 30px"
+                />
+              </div>
+              <div class="paquetes-modal-titles">
+                <h2>PLANES ROMÁNTICO</h2>
+                <h3>SUITE</h3>
+              </div>
+            </div>
+            <button class="paquetes-modal-reserve-btn">
+              <i class="fas fa-bell"></i>
+              Reservar
+            </button>
+          </div>
+
+          <div class="paquetes-modal-section">
+            <h4>LO QUE INCLUYE:</h4>
+            <div class="paquetes-modal-grid">
+              <div class="paquetes-modal-item">
+                <div class="paquetes-modal-item-icon">
+                  <i class="fas fa-bed"></i>
+                </div>
+                <div class="paquetes-modal-item-text">
+                  Habitación Suite Matrimonial<br />
+                  Desayuno Buffet Continental<br />
+                  Pétalos de Rosa en la Cama
+                </div>
+              </div>
+              <div class="paquetes-modal-item">
+                <div class="paquetes-modal-item-icon">
+                  <i class="fas fa-spa"></i>
+                </div>
+                <div class="paquetes-modal-item-text">
+                  Camino de Pétalos<br />
+                  Cortina de corazón "Ingreso"<br />
+                  Decorado de letras
+                </div>
+              </div>
+              <div class="paquetes-modal-item">
+                <div class="paquetes-modal-item-icon">
+                  <i class="fas fa-wine-glass"></i>
+                </div>
+                <div class="paquetes-modal-item-text">
+                  Vino<br />
+                  Mesa Comedor Decorada "letras LEAD(TE AMO) y Pétalos"<br />
+                  Mini Bouquet Eterno
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="paquetes-divider"></div>
+
+          <div class="paquetes-modal-section">
+            <h4>CARACTERÍSTICAS DE HABITACIÓN:</h4>
+            <div class="paquetes-modal-grid">
+              <div class="paquetes-modal-item">
+                <div class="paquetes-modal-item-icon">
+                  <i class="fas fa-couch"></i>
+                </div>
+                <div class="paquetes-modal-item-text">
+                  Sala de Descanso - Comedor<br />
+                  TV Cable - WIFI<br />
+                  Baño Privado
+                </div>
+              </div>
+              <div class="paquetes-modal-item">
+                <div class="paquetes-modal-item-icon">
+                  <i class="fas fa-blender"></i>
+                </div>
+                <div class="paquetes-modal-item-text">
+                  Frigobar<br />
+                  Microondas<br />
+                  Vajilla
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="paquetes-divider"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Estándar -->
+    <div class="paquetes-modal-overlay" id="modal-estandar">
+      <div class="paquetes-modal">
+        <button class="paquetes-modal-close">
+          <i class="fas fa-times"></i>
+        </button>
+
+        <div class="paquetes-slider-container">
+          <div class="swiper" id="swiper-estandar">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756826850/08_zx4fvl.png"
+                  alt="Plan Estándar 1"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756831326/BA%C3%91O_pAQUETE1_imgupscaler.ai_Sharpener_4K_fzbnmt.webp"
+                  alt="Plan Estándar 2"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756831423/paquete4_7_1_imgupscaler.ai_General_8K_rkyjhj.webp"
+                  alt="Plan Estándar 3"
+                />
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+
+        <div class="paquetes-modal-content">
+          <div class="paquetes-modal-header">
+            <div class="paquetes-modal-title-section">
+              <div class="paquetes-modal-icon">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756937847/68b6d353-7bf4-4c30-9034-08807a6f52a2.png"
+                  alt="Cupido"
+                  style="width: 30px; height: 30px"
+                />
+              </div>
+              <div class="paquetes-modal-titles">
+                <h2>PLANES ROMÁNTICO</h2>
+                <h3>ESTÁNDAR</h3>
+              </div>
+            </div>
+            <button class="paquetes-modal-reserve-btn">
+              <i class="fas fa-bell"></i>
+              Reservar
+            </button>
+          </div>
+
+          <div class="paquetes-modal-section">
+            <h4>LO QUE INCLUYE:</h4>
+            <div class="paquetes-modal-grid">
+              <div class="paquetes-modal-item">
+                <div class="paquetes-modal-item-icon">
+                  <i class="fas fa-bed"></i>
+                </div>
+                <div class="paquetes-modal-item-text">
+                  Habitación Matrimonial Estándar<br />
+                  Pétalos de Rosa en la Cama<br />
+                  Camino de Pétalos
+                </div>
+              </div>
+              <div class="paquetes-modal-item">
+                <div class="paquetes-modal-item-icon">
+                  <i class="fas fa-spa"></i>
+                </div>
+                <div class="paquetes-modal-item-text">
+                  Decorado de letras LED "LOVE"<br />
+                  Mini Bouquet Eterno<br />
+                  Cortina de corazón "Ingreso"
+                </div>
+              </div>
+              <div class="paquetes-modal-item">
+                <div class="paquetes-modal-item-icon">
+                  <i class="fas fa-wine-glass"></i>
+                </div>
+                <div class="paquetes-modal-item-text">Vino</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="paquetes-divider"></div>
+
+          <div class="paquetes-modal-section">
+            <h4>CARACTERÍSTICAS DE HABITACIÓN:</h4>
+            <div class="paquetes-modal-grid">
+              <div class="paquetes-modal-item">
+                <div class="paquetes-modal-item-icon">
+                  <i class="fas fa-blender"></i>
+                </div>
+                <div class="paquetes-modal-item-text">
+                  Frigobar<br />
+                  Microondas<br />
+                  Vajilla
+                </div>
+              </div>
+              <div class="paquetes-modal-item">
+                <div class="paquetes-modal-item-icon">
+                  <i class="fas fa-tv"></i>
+                </div>
+                <div class="paquetes-modal-item-text">
+                  TV Cable - WIFI<br />
+                  Baño Privado
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="paquetes-divider"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/swiper/8.4.7/swiper-bundle.min.js"></script>
+    <script>
+      // Initialize Swiper instances
+      let swiperSuite, swiperEstandar;
+
+      function initSwipers() {
+        swiperSuite = new Swiper("#swiper-suite", {
+          loop: true,
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+          },
+          effect: "fade",
+          fadeEffect: {
+            crossFade: true,
+          },
+        });
+
+        swiperEstandar = new Swiper("#swiper-estandar", {
+          loop: true,
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+          },
+          effect: "fade",
+          fadeEffect: {
+            crossFade: true,
+          },
+        });
+      }
+
+      // Modal functionality
+      function openModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+          modal.classList.add("active");
+          document.body.style.overflow = "hidden";
+
+          // Initialize swipers when modal opens
+          setTimeout(() => {
+            initSwipers();
+          }, 100);
+        }
+      }
+
+      function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+          modal.classList.remove("active");
+          document.body.style.overflow = "auto";
+
+          // Destroy swiper instances
+          if (swiperSuite) {
+            swiperSuite.destroy(true, true);
+            swiperSuite = null;
+          }
+          if (swiperEstandar) {
+            swiperEstandar.destroy(true, true);
+            swiperEstandar = null;
+          }
+        }
+      }
+
+      // Event listeners
+      document.addEventListener("DOMContentLoaded", function () {
+        // Detail links
+        document.querySelectorAll(".paquetes-detail-link").forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const modalType = this.getAttribute("data-modal");
+            openModal(`modal-${modalType}`);
+          });
+        });
+
+        // Close buttons
+        document.querySelectorAll(".paquetes-modal-close").forEach((button) => {
+          button.addEventListener("click", function () {
+            const modal = this.closest(".paquetes-modal-overlay");
+            closeModal(modal.id);
+          });
+        });
+
+        // Click outside modal to close
+        document
+          .querySelectorAll(".paquetes-modal-overlay")
+          .forEach((overlay) => {
+            overlay.addEventListener("click", function (e) {
+              if (e.target === this) {
+                closeModal(this.id);
+              }
+            });
+          });
+
+        // Escape key to close modal
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            document
+              .querySelectorAll(".paquetes-modal-overlay.active")
+              .forEach((modal) => {
+                closeModal(modal.id);
+              });
+          }
+        });
+
+        // Entrance animations with Intersection Observer
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.animationPlayState = "running";
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        // Observe animated elements
+        document
+          .querySelectorAll(".paquetes-header, .paquetes-item")
+          .forEach((el) => {
+            el.style.animationPlayState = "paused";
+            observer.observe(el);
+          });
+
+        // Add smooth hover effects to images
+        document.querySelectorAll(".paquetes-image").forEach((image) => {
+          image.addEventListener("mouseenter", function () {
+            this.style.transform = "translateY(-10px) scale(1.02)";
+          });
+
+          image.addEventListener("mouseleave", function () {
+            this.style.transform = "translateY(0) scale(1)";
+          });
+        });
+
+        // Add click effect to buttons
+        document
+          .querySelectorAll(
+            ".paquetes-reserve-btn, .paquetes-modal-reserve-btn"
+          )
+          .forEach((btn) => {
+            btn.addEventListener("click", function (e) {
+              // Create ripple effect
+              const ripple = document.createElement("span");
+              const rect = this.getBoundingClientRect();
+              const size = Math.max(rect.width, rect.height);
+              const x = e.clientX - rect.left - size / 2;
+              const y = e.clientY - rect.top - size / 2;
+
+              ripple.style.cssText = `
+                        position: absolute;
+                        width: ${size}px;
+                        height: ${size}px;
+                        left: ${x}px;
+                        top: ${y}px;
+                        background: rgba(255, 255, 255, 0.5);
+                        border-radius: 50%;
+                        transform: scale(0);
+                        animation: ripple 0.6s linear;
+                        pointer-events: none;
+                    `;
+
+              this.style.position = "relative";
+              this.style.overflow = "hidden";
+              this.appendChild(ripple);
+
+              setTimeout(() => {
+                ripple.remove();
+              }, 600);
+            });
+          });
+
+        // Add loading state to reserve buttons
+        document
+          .querySelectorAll(
+            ".paquetes-reserve-btn, .paquetes-modal-reserve-btn"
+          )
+          .forEach((btn) => {
+            btn.addEventListener("click", function () {
+              const originalText = this.innerHTML;
+              this.innerHTML =
+                '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+              this.disabled = true;
+
+              setTimeout(() => {
+                this.innerHTML = originalText;
+                this.disabled = false;
+              }, 2000);
+            });
+          });
+      });
+
+      // Add CSS for ripple effect
+      const style = document.createElement("style");
+      style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+            
+            .paquetes-reserve-btn:disabled,
+            .paquetes-modal-reserve-btn:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+            }
+        `;
+      document.head.appendChild(style);
+    </script>
+  </body>
+</html>

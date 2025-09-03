@@ -103,7 +103,9 @@ function initializeAnimations() {
 
           // Animar elementos individualmente
           setTimeout(() => {
-            const rooms = section.querySelectorAll(".habInfo-room");
+            const rooms = section.querySelectorAll(
+              ".habInfo-room, .habInfo-promo-card"
+            );
             rooms.forEach((room, index) => {
               setTimeout(() => {
                 room.classList.add("animate");
