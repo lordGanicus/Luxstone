@@ -79,17 +79,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-/*******************************************Habitacioens/ Todas las habitacioens ******************************************/
+/***********************Dentro de paquetes**********************/
 // Variables globales
-let currentSlide = {};
-let swipers = {};
+let currentSwiper = null;
 
 // Inicialización cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", function () {
   initializeAnimations();
   initializeModals();
-  initializeSwiperSliders();
   setupModalScrollEffects();
+
+  // Agregar event listeners para los botones de reserva
+  document.querySelectorAll(".pqt-reserve-btn").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      // Aquí puedes agregar la lógica para reservar
+      alert("Función de reserva pronto disponible");
+    });
+  });
 });
 
 // Animaciones de entrada
@@ -103,25 +109,23 @@ function initializeAnimations() {
 
           // Animar elementos individualmente
           setTimeout(() => {
-            const rooms = section.querySelectorAll(
-              ".habInfo-room, .habInfo-promo-card"
-            );
-            rooms.forEach((room, index) => {
+            const items = section.querySelectorAll(".pqt-item");
+            items.forEach((item, index) => {
               setTimeout(() => {
-                room.classList.add("animate");
-              }, index * 200);
+                item.classList.add("animate");
+              }, index * 300);
             });
           }, 300);
         }
       });
     },
     {
-      threshold: 0.2,
+      threshold: 0.1,
       rootMargin: "0px 0px -50px 0px",
     }
   );
 
-  const section = document.getElementById("habInfo-section");
+  const section = document.getElementById("pqt-section");
   if (section) {
     observer.observe(section);
   }
@@ -130,26 +134,24 @@ function initializeAnimations() {
 // Inicializar modales
 function initializeModals() {
   // Agregar event listeners para abrir modales
-  document.querySelectorAll(".habInfo-room").forEach((room) => {
-    room.addEventListener("click", function () {
-      const roomType = this.getAttribute("data-room");
-      const modal = document.getElementById(`habModal-${roomType}`);
-      if (modal) {
-        openModal(modal);
-      }
+  document.querySelectorAll(".pqt-detail-link").forEach((link) => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      const modalType = this.getAttribute("data-modal");
+      openModal(`pqt-modal-${modalType}`);
     });
   });
 
   // Agregar event listeners para cerrar modales
-  document.querySelectorAll(".habModal-close").forEach((closeBtn) => {
+  document.querySelectorAll(".pqt-modal-close").forEach((closeBtn) => {
     closeBtn.addEventListener("click", function () {
-      const modal = this.closest(".habModal-overlay");
+      const modal = this.closest(".pqt-modal-overlay");
       closeModal(modal);
     });
   });
 
   // Cerrar modal al hacer clic en el overlay
-  document.querySelectorAll(".habModal-overlay").forEach((overlay) => {
+  document.querySelectorAll(".pqt-modal-overlay").forEach((overlay) => {
     overlay.addEventListener("click", function (e) {
       if (e.target === this) {
         closeModal(this);
@@ -160,7 +162,7 @@ function initializeModals() {
   // Cerrar modal con tecla ESC
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
-      const activeModal = document.querySelector(".habModal-overlay.active");
+      const activeModal = document.querySelector(".pqt-modal-overlay.active");
       if (activeModal) {
         closeModal(activeModal);
       }
@@ -168,50 +170,37 @@ function initializeModals() {
   });
 }
 
-// Inicializar sliders Swiper
-function initializeSwiperSliders() {
-  document.querySelectorAll(".habModal-overlay").forEach((modal) => {
-    const roomType = modal.id.replace("habModal-", "");
-    const swiperEl = modal.querySelector(".swiper");
-
-    swipers[roomType] = new Swiper(swiperEl, {
-      loop: true,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    });
-  });
-}
-
 // Configurar efectos de scroll en modales
 function setupModalScrollEffects() {
-  document.querySelectorAll(".habModal-body").forEach((body) => {
-    body.addEventListener("scroll", function () {
-      const modalContent = this.closest(".habModal-content");
+  document.querySelectorAll(".pqt-modal-content").forEach((content) => {
+    content.addEventListener("scroll", function () {
+      const modal = this.closest(".pqt-modal");
       if (this.scrollTop > 20) {
-        modalContent.classList.add("scrolled");
+        modal.classList.add("scrolled");
       } else {
-        modalContent.classList.remove("scrolled");
+        modal.classList.remove("scrolled");
       }
     });
   });
 }
 
 // Funciones de modal
-function openModal(modal) {
-  modal.classList.add("active");
-  document.body.style.overflow = "hidden";
+function openModal(modalId) {
+  const modal = document.getElementById(modalId);
+  if (modal) {
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
 
-  // Inicializar swiper para este modal si no está inicializado
-  const roomType = modal.id.replace("habModal-", "");
-  if (!swipers[roomType]) {
+    // Inicializar swiper para este modal
+    const roomType = modalId.replace("pqt-modal-", "");
     const swiperEl = modal.querySelector(".swiper");
-    swipers[roomType] = new Swiper(swiperEl, {
+
+    // Destruir swiper existente si hay uno
+    if (currentSwiper) {
+      currentSwiper.destroy(true, true);
+    }
+
+    currentSwiper = new Swiper(swiperEl, {
       loop: true,
       pagination: {
         el: ".swiper-pagination",
@@ -221,55 +210,29 @@ function openModal(modal) {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+      },
+      effect: "fade",
+      fadeEffect: {
+        crossFade: true,
+      },
     });
+
+    // Resetear estado de scroll
+    const modalContent = modal.querySelector(".pqt-modal");
+    modalContent.classList.remove("scrolled");
   }
-
-  // Resetear estado de scroll
-  const modalContent = modal.querySelector(".habModal-content");
-  modalContent.classList.remove("scrolled");
-
-  // Efecto de entrada suave
-  setTimeout(() => {
-    modal.style.backdropFilter = "blur(5px)";
-  }, 100);
 }
 
 function closeModal(modal) {
   modal.classList.remove("active");
   document.body.style.overflow = "";
-  modal.style.backdropFilter = "none";
+
+  // Destruir swiper al cerrar el modal
+  if (currentSwiper) {
+    currentSwiper.destroy(true, true);
+    currentSwiper = null;
+  }
 }
-
-// Preload de imágenes del modal para mejor performance
-function preloadModalImages() {
-  const modalImages = [
-    "https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877469/suite-junior-04_fva2hx.webp",
-    "https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877463/suite-junior-03_itphi8.webp",
-    "https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877452/hab-matrimonial-02_1_nbupt8.webp",
-    "https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877455/hab-matrimonial-03_vyqzbe.webp",
-  ];
-
-  modalImages.forEach((src) => {
-    const img = new Image();
-    img.src = src;
-  });
-}
-
-// Inicializar efectos adicionales
-document.addEventListener("DOMContentLoaded", function () {
-  preloadModalImages();
-});
-
-// Smooth scroll para mejor UX
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute("href"));
-    if (target) {
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  });
-});

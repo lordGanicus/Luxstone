@@ -152,7 +152,7 @@ function initHamburgerModal() {
     link.addEventListener("mouseenter", function () {
       const parentItem = this.parentElement;
       const index = Array.from(navItems).indexOf(parentItem);
-      const position = index * 50; // Altura aproximada de cada elemento
+      const position = index * 65; // Altura aproximada de cada elemento
 
       lineMarker.style.top = `${position}px`;
     });

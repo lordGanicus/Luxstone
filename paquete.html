@@ -10,11 +10,13 @@
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/swiper/8.4.7/swiper-bundle.min.css"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Open+Sans:wght@400;600;700;800&family=Overlock:wght@400&display=swap"
+      rel="stylesheet"
     />
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Open+Sans:wght@400;600;700;800&family=Overlock:wght@400&display=swap");
-
       * {
         margin: 0;
         padding: 0;
@@ -22,52 +24,62 @@
       }
 
       body {
-        font-family: "Open Sans", sans-serif;
         background-color: #f8f9fa;
+        color: #333;
       }
 
-      .paquetes-section {
-        max-width: 1200px;
+      /* Sección Paquetes */
+      .pqt-section {
+        font-family: "Open Sans", sans-serif;
+        max-width: 1600px;
         margin: 0 auto;
-        padding: 60px 20px;
+        padding: 80px 20px;
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 1s ease-out;
       }
 
-      .paquetes-header {
+      .pqt-section.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .pqt-header {
         text-align: center;
         margin-bottom: 80px;
-        opacity: 0;
-        transform: translateY(30px);
-        animation: fadeInUp 1s ease forwards;
+        position: relative;
       }
 
-      .paquetes-title {
+      .pqt-title {
         font-family: "Oswald", sans-serif;
         font-weight: 300;
         font-size: 3rem;
         color: #1d252d;
         margin-bottom: 20px;
         position: relative;
+        display: inline-block;
       }
 
-      .paquetes-title::before,
-      .paquetes-title::after {
+      .pqt-title::before,
+      .pqt-title::after {
         content: "";
         position: absolute;
         top: 50%;
-        width: 100px;
+        width: 70px;
         height: 2px;
-        background: linear-gradient(90deg, #cf9614, #c88f0e);
+        background: linear-gradient(90deg, #000000, #000000);
       }
 
-      .paquetes-title::before {
-        left: -120px;
+      .pqt-title::before {
+        left: -90px;
       }
 
-      .paquetes-title::after {
+      .pqt-title::after {
         right: -120px;
+        display: none;
       }
 
-      .paquetes-description {
+      .pqt-description {
         font-family: "Overlock", cursive;
         font-size: 1.1rem;
         color: #666;
@@ -76,70 +88,67 @@
         line-height: 1.6;
       }
 
-      .paquetes-grid {
+      .pqt-grid {
         display: grid;
-        gap: 60px;
+        gap: 80px;
       }
 
-      .paquetes-item {
+      .pqt-item {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 40px;
         align-items: center;
         opacity: 0;
         transform: translateY(50px);
-        animation: fadeInUp 1s ease forwards;
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
-      .paquetes-item:nth-child(2) {
-        animation-delay: 0.3s;
+      .pqt-item.animate {
+        opacity: 1;
+        transform: translateY(0);
       }
 
-      .paquetes-item.reverse {
-        direction: rtl;
+      .pqt-item.reverse .pqt-image {
+        order: 2;
       }
 
-      .paquetes-item.reverse > * {
-        direction: ltr;
+      .pqt-item.reverse .pqt-card {
+        order: 1;
       }
 
-      .paquetes-image {
+      .pqt-image {
         position: relative;
-        border-radius: 15px;
+        border-radius: 2px;
         overflow: hidden;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
       }
 
-      .paquetes-image:hover {
-        transform: translateY(-5px);
+      .pqt-image:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
       }
 
-      .paquetes-image img {
+      .pqt-image img {
         width: 100%;
-        height: 350px;
+        height: 400px;
         object-fit: cover;
-        transition: transform 0.3s ease;
+        transition: transform 0.5s ease;
       }
 
-      .paquetes-image:hover img {
+      .pqt-image:hover img {
         transform: scale(1.05);
       }
 
-      .paquetes-card {
+      .pqt-card {
         background: white;
         padding: 40px;
-        border-radius: 15px;
+        border-radius: 5px;
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-align: center;
       }
 
-      .paquetes-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-      }
-
-      .paquetes-card-title {
+      .pqt-card-title {
         font-family: "Oswald", sans-serif;
         font-weight: 300;
         font-size: 2.2rem;
@@ -147,23 +156,32 @@
         margin-bottom: 5px;
       }
 
-      .paquetes-card-subtitle {
+      .pqt-card-subtitle {
         font-family: "Open Sans", sans-serif;
         font-weight: 800;
         font-size: 0.9rem;
         color: #666;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         letter-spacing: 1px;
       }
 
-      .paquetes-card-description {
+      .pqt-card-special {
+        font-family: "Open Sans", sans-serif;
+        font-style: italic;
+        color: #cf9614;
+        margin-bottom: 15px;
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      .pqt-card-description {
         font-family: "Open Sans", sans-serif;
         color: #555;
         line-height: 1.6;
         margin-bottom: 25px;
       }
 
-      .paquetes-detail-link {
+      .pqt-detail-link {
         display: inline-block;
         color: #cf9614;
         font-weight: 600;
@@ -173,7 +191,7 @@
         transition: color 0.3s ease;
       }
 
-      .paquetes-detail-link::after {
+      .pqt-detail-link::after {
         content: "";
         position: absolute;
         bottom: -3px;
@@ -185,22 +203,22 @@
         transition: transform 0.3s ease;
       }
 
-      .paquetes-detail-link:hover::after {
+      .pqt-detail-link:hover::after {
         transform: scaleX(1);
       }
 
-      .paquetes-reserve-btn {
+      .pqt-reserve-btn {
         background: transparent;
         border: 2px solid #c88f0e;
         color: #c88f0e;
         padding: 12px 30px;
-        border-radius: 25px;
+        border-radius: 0;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
       }
 
-      .paquetes-reserve-btn:hover {
+      .pqt-reserve-btn:hover {
         background: #c88f0e;
         color: white;
         transform: translateY(-2px);
@@ -208,7 +226,7 @@
       }
 
       /* Modal Styles */
-      .paquetes-modal-overlay {
+      .pqt-modal-overlay {
         position: fixed;
         top: 0;
         left: 0;
@@ -216,35 +234,38 @@
         height: 100%;
         background: rgba(0, 0, 0, 0.8);
         z-index: 1000;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-
-      .paquetes-modal-overlay.active {
         display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .pqt-modal-overlay.active {
         opacity: 1;
+        visibility: visible;
       }
 
-      .paquetes-modal {
+      .pqt-modal {
         background: white;
-        border-radius: 20px;
-        max-width: 800px;
+        width: 90%;
+        max-width: 1000px;
         max-height: 90vh;
-        overflow-y: auto;
-        position: relative;
-        transform: scale(0.8);
-        transition: transform 0.3s ease;
-        margin: 20px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        transform: scale(0.7) translateY(50px);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
       }
 
-      .paquetes-modal-overlay.active .paquetes-modal {
-        transform: scale(1);
+      .pqt-modal-overlay.active .pqt-modal {
+        transform: scale(1) translateY(0);
       }
 
-      .paquetes-modal-close {
+      .pqt-modal-close {
         position: absolute;
         top: 20px;
         right: 20px;
@@ -260,15 +281,18 @@
         transition: background 0.3s ease;
       }
 
-      .paquetes-modal-close:hover {
+      .pqt-modal-close:hover {
         background: rgba(0, 0, 0, 0.7);
       }
 
-      .paquetes-slider-container {
+      .pqt-slider-container {
         position: relative;
         height: 400px;
-        border-radius: 20px 20px 0 0;
-        overflow: hidden;
+        transition: all 0.5s ease;
+      }
+
+      .pqt-modal.scrolled .pqt-slider-container {
+        height: 300px;
       }
 
       .swiper {
@@ -276,17 +300,69 @@
         height: 100%;
       }
 
+      .swiper-slide {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
       .swiper-slide img {
+        display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transition: transform 0.5s ease;
       }
 
-      .paquetes-modal-content {
+      .pqt-modal.scrolled .swiper-slide img {
+        transform: translateY(-50px);
+      }
+
+      .swiper-pagination-bullet {
+        width: 12px;
+        height: 12px;
+        background: rgba(255, 255, 255, 0.5);
+        opacity: 1;
+      }
+
+      .swiper-pagination-bullet-active {
+        background: #fff;
+      }
+
+      .swiper-button-next,
+      .swiper-button-prev {
+        color: white;
+        background: rgba(0, 0, 0, 0.5);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+      }
+
+      .swiper-button-next:after,
+      .swiper-button-prev:after {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .swiper-button-next:hover,
+      .swiper-button-prev:hover {
+        background: rgba(0, 0, 0, 0.7);
+      }
+
+      .pqt-modal-content {
         padding: 30px;
+        overflow-y: auto;
+        position: relative;
+        transition: all 0.5s ease;
       }
 
-      .paquetes-modal-header {
+      .pqt-modal.scrolled .pqt-modal-content {
+        transform: translateY(-30px);
+      }
+
+      .pqt-modal-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -295,16 +371,16 @@
         border-bottom: 2px solid #000;
       }
 
-      .paquetes-modal-title-section {
+      .pqt-modal-title-section {
         display: flex;
         align-items: center;
         gap: 15px;
       }
 
-      .paquetes-modal-icon {
+      .pqt-modal-icon {
         width: 50px;
         height: 50px;
-        background: #cf9614;
+        background: #000;
         border-radius: 10px;
         display: flex;
         align-items: center;
@@ -313,7 +389,14 @@
         font-size: 24px;
       }
 
-      .paquetes-modal-titles h2 {
+      .pqt-modal-icon img {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+        filter: invert(1);
+      }
+
+      .pqt-modal-titles h2 {
         font-family: "Oswald", sans-serif;
         font-weight: 300;
         font-size: 2rem;
@@ -321,7 +404,7 @@
         margin: 0;
       }
 
-      .paquetes-modal-titles h3 {
+      .pqt-modal-titles h3 {
         font-family: "Open Sans", sans-serif;
         font-weight: 800;
         font-size: 1rem;
@@ -330,7 +413,7 @@
         letter-spacing: 1px;
       }
 
-      .paquetes-modal-reserve-btn {
+      .pqt-modal-reserve-btn {
         background: linear-gradient(
           270deg,
           #ffd36e 0%,
@@ -349,15 +432,15 @@
         transition: transform 0.3s ease;
       }
 
-      .paquetes-modal-reserve-btn:hover {
+      .pqt-modal-reserve-btn:hover {
         transform: translateY(-2px);
       }
 
-      .paquetes-modal-section {
+      .pqt-modal-section {
         margin-bottom: 30px;
       }
 
-      .paquetes-modal-section h4 {
+      .pqt-modal-section h4 {
         font-family: "Open Sans", sans-serif;
         font-weight: 800;
         font-size: 1.1rem;
@@ -365,157 +448,262 @@
         margin-bottom: 20px;
       }
 
-      .paquetes-modal-grid {
+      .pqt-modal-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 20px;
       }
 
-      .paquetes-modal-item {
+      .pqt-modal-item {
         display: flex;
         align-items: flex-start;
         gap: 12px;
       }
 
-      .paquetes-modal-item-icon {
+      .pqt-modal-item-icon {
         width: 40px;
         height: 40px;
-        background: #cf9614;
+        background: #000;
         border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
         color: white;
         flex-shrink: 0;
+        font-size: 18px;
       }
 
-      .paquetes-modal-item-text {
+      .pqt-modal-item-text {
         font-size: 0.95rem;
         line-height: 1.6;
         color: #555;
       }
 
-      .paquetes-divider {
+      .pqt-divider {
         height: 2px;
         background: #000;
         margin: 25px 0;
       }
 
-      /* Animations */
-      @keyframes fadeInUp {
-        to {
-          opacity: 1;
-          transform: translateY(0);
+      .scroll-indicator {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #3498db;
+        font-size: 14px;
+        opacity: 1;
+        animation: bounce 2s infinite;
+        transition: opacity 0.3s ease;
+      }
+
+      .pqt-modal.scrolled .scroll-indicator {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0) translateX(-50%);
+        }
+        40% {
+          transform: translateY(-10px) translateX(-50%);
+        }
+        60% {
+          transform: translateY(-5px) translateX(-50%);
         }
       }
 
+      .scroll-indicator i {
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+
       /* Responsive */
+      @media (max-width: 992px) {
+        .pqt-modal-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
       @media (max-width: 768px) {
-        .paquetes-title {
+        .pqt-title {
           font-size: 2.2rem;
         }
 
-        .paquetes-title::before,
-        .paquetes-title::after {
+        .pqt-title::before,
+        .pqt-title::after {
           display: none;
         }
 
-        .paquetes-item {
+        .pqt-item {
           grid-template-columns: 1fr;
           text-align: center;
         }
 
-        .paquetes-item.reverse {
-          direction: ltr;
+        .pqt-item.reverse .pqt-image {
+          order: 1;
         }
 
-        .paquetes-modal {
-          margin: 10px;
+        .pqt-item.reverse .pqt-card {
+          order: 2;
+        }
+
+        .pqt-modal {
+          width: 95%;
           max-height: 95vh;
         }
 
-        .paquetes-modal-header {
+        .pqt-modal-header {
           flex-direction: column;
           gap: 15px;
           text-align: center;
         }
 
-        .paquetes-modal-grid {
+        .pqt-modal-grid {
           grid-template-columns: 1fr;
+        }
+
+        .pqt-slider-container {
+          height: 300px;
+        }
+
+        .pqt-modal.scrolled .pqt-slider-container {
+          height: 220px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .pqt-section {
+          padding: 60px 15px;
+        }
+
+        .pqt-title {
+          font-size: 1.8rem;
+        }
+
+        .pqt-description {
+          font-size: 1rem;
+        }
+
+        .pqt-card {
+          padding: 25px;
+        }
+
+        .pqt-card-title {
+          font-size: 1.8rem;
+        }
+
+        .pqt-slider-container {
+          height: 250px;
+        }
+
+        .pqt-modal.scrolled .pqt-slider-container {
+          height: 180px;
+        }
+
+        .pqt-modal-content {
+          padding: 20px;
+        }
+
+        .pqt-modal.scrolled .pqt-modal-content {
+          transform: translateY(-20px);
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+          display: none;
         }
       }
     </style>
   </head>
   <body>
-    <section class="paquetes-section">
-      <header class="paquetes-header">
-        <h1 class="paquetes-title">Paquetes Especiales</h1>
-        <p class="paquetes-description">
+    <section class="pqt-section" id="pqt-section">
+      <header class="pqt-header">
+        <h1 class="pqt-title">Paquetes Especiales</h1>
+        <p class="pqt-description">
           Sorprende a tu pareja con nuestro Paquete Especial de Amor. Amenidades
           románticas y espacios acogedores te esperan. Haz de tu visita a
           Luxstone una experiencia única y memorable.
         </p>
       </header>
 
-      <div class="paquetes-grid">
+      <div class="pqt-grid">
         <!-- Paquete Suite -->
-        <article class="paquetes-item">
-          <div class="paquetes-image">
+        <article class="pqt-item">
+          <div class="pqt-image">
             <img
               src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877516/decorado-03_lzkozl.webp"
               alt="Suite Romántica Luxstone"
             />
           </div>
-          <div class="paquetes-card">
-            <h2 class="paquetes-card-title">PLAN ROMÁNTICO</h2>
-            <h3 class="paquetes-card-subtitle">SUITE</h3>
-            <p class="paquetes-card-description">
+          <div class="pqt-card">
+            <h2 class="pqt-card-title">PLAN ROMÁNTICO</h2>
+            <h3 class="pqt-card-subtitle">SUITE</h3>
+            <!--<p class="pqt-card-special">
+              Tu historia de amor merece un lugar especial. Suites con detalles
+              románticos para cada ocasión. Haz de tu estancia un recuerdo
+              inolvidable.
+            </p>-->
+            <p class="pqt-card-description">
               Nuestro Plan Romántico Suite combina lujo y calidez para parejas
               que desean una experiencia distinta. Vive la magia del romance en
               un ambiente elegante y exclusivo.
             </p>
-            <a href="#" class="paquetes-detail-link" data-modal="suite"
+            <a href="#" class="pqt-detail-link" data-modal="suite"
               >VER DETALLE</a
             >
             <br />
-            <button class="paquetes-reserve-btn">RESERVAR</button>
+            <button class="pqt-reserve-btn">RESERVAR</button>
           </div>
         </article>
 
         <!-- Paquete Estándar -->
-        <article class="paquetes-item reverse">
-          <div class="paquetes-image">
+        <article class="pqt-item reverse">
+          <div class="pqt-image">
             <img
               src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756826850/08_zx4fvl.png"
               alt="Plan Romántico Estándar"
             />
           </div>
-          <div class="paquetes-card">
-            <h2 class="paquetes-card-title">PLAN ROMÁNTICO</h2>
-            <h3 class="paquetes-card-subtitle">ESTÁNDAR</h3>
-            <p class="paquetes-card-description">
+          <div class="pqt-card">
+            <h2 class="pqt-card-title">PLAN ROMÁNTICO</h2>
+            <h3 class="pqt-card-subtitle">ESTÁNDAR</h3>
+            <!--<p class="pqt-card-special">
+              Tu historia de amor merece un lugar especial. Habitaciones con
+              detalles románticos para cada ocasión. Haz de tu estancia un
+              recuerdo inolvidable.
+            </p>-->
+            <p class="pqt-card-description">
               Nuestro Plan Romántico Estándar es la manera perfecta de disfrutar
               de La Paz con tu pareja, en un ambiente íntimo y con detalles
               preparados para el amor.
             </p>
-            <a href="#" class="paquetes-detail-link" data-modal="estandar"
+            <a href="#" class="pqt-detail-link" data-modal="estandar"
               >VER DETALLE</a
             >
             <br />
-            <button class="paquetes-reserve-btn">RESERVAR</button>
+            <button class="pqt-reserve-btn">RESERVAR</button>
           </div>
         </article>
       </div>
     </section>
 
     <!-- Modal Suite -->
-    <div class="paquetes-modal-overlay" id="modal-suite">
-      <div class="paquetes-modal">
-        <button class="paquetes-modal-close">
+    <div class="pqt-modal-overlay" id="pqt-modal-suite">
+      <div class="pqt-modal">
+        <button class="pqt-modal-close">
           <i class="fas fa-times"></i>
         </button>
 
-        <div class="paquetes-slider-container">
+        <div class="pqt-slider-container">
           <div class="swiper" id="swiper-suite">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
@@ -543,104 +731,177 @@
           </div>
         </div>
 
-        <div class="paquetes-modal-content">
-          <div class="paquetes-modal-header">
-            <div class="paquetes-modal-title-section">
-              <div class="paquetes-modal-icon">
+        <div class="pqt-modal-content">
+          <div class="pqt-modal-header">
+            <div class="pqt-modal-title-section">
+              <div class="pqt-modal-icon">
                 <img
                   src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756937847/68b6d353-7bf4-4c30-9034-08807a6f52a2.png"
                   alt="Cupido"
-                  style="width: 30px; height: 30px"
                 />
               </div>
-              <div class="paquetes-modal-titles">
+              <div class="pqt-modal-titles">
                 <h2>PLANES ROMÁNTICO</h2>
                 <h3>SUITE</h3>
               </div>
             </div>
-            <button class="paquetes-modal-reserve-btn">
+            <button class="pqt-modal-reserve-btn">
               <i class="fas fa-bell"></i>
               Reservar
             </button>
           </div>
 
-          <div class="paquetes-modal-section">
+          <div class="pqt-modal-section">
             <h4>LO QUE INCLUYE:</h4>
-            <div class="paquetes-modal-grid">
-              <div class="paquetes-modal-item">
-                <div class="paquetes-modal-item-icon">
+            <div class="pqt-modal-grid">
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
                   <i class="fas fa-bed"></i>
                 </div>
-                <div class="paquetes-modal-item-text">
-                  Habitación Suite Matrimonial<br />
-                  Desayuno Buffet Continental<br />
+                <div class="pqt-modal-item-text">
+                  Habitación Suite Matrimonial
+                </div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-coffee"></i>
+                </div>
+                <div class="pqt-modal-item-text">
+                  Desayuno Buffet Continental
+                </div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-rose"></i>
+                </div>
+                <div class="pqt-modal-item-text">
                   Pétalos de Rosa en la Cama
                 </div>
               </div>
-              <div class="paquetes-modal-item">
-                <div class="paquetes-modal-item-icon">
-                  <i class="fas fa-spa"></i>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-road"></i>
                 </div>
-                <div class="paquetes-modal-item-text">
-                  Camino de Pétalos<br />
-                  Cortina de corazón "Ingreso"<br />
-                  Decorado de letras
+                <div class="pqt-modal-item-text">Camino de Pétalos</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-heart"></i>
+                </div>
+                <div class="pqt-modal-item-text">
+                  Cortina de corazón "Ingreso"
                 </div>
               </div>
-              <div class="paquetes-modal-item">
-                <div class="paquetes-modal-item-icon">
-                  <i class="fas fa-wine-glass"></i>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-font"></i>
                 </div>
-                <div class="paquetes-modal-item-text">
-                  Vino<br />
-                  Mesa Comedor Decorada "letras LEAD(TE AMO) y Pétalos"<br />
-                  Mini Bouquet Eterno
+                <div class="pqt-modal-item-text">Decorado de letras</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-wine-glass-alt"></i>
                 </div>
+                <div class="pqt-modal-item-text">Vino</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-utensils"></i>
+                </div>
+                <div class="pqt-modal-item-text">
+                  Mesa Comedor Decorada "letras LEAD(TE AMO) y Pétalos"
+                </div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-gift"></i>
+                </div>
+                <div class="pqt-modal-item-text">Mini Bouquet Eterno</div>
               </div>
             </div>
           </div>
 
-          <div class="paquetes-divider"></div>
+          <div class="pqt-divider"></div>
 
-          <div class="paquetes-modal-section">
+          <div class="pqt-modal-section">
             <h4>CARACTERÍSTICAS DE HABITACIÓN:</h4>
-            <div class="paquetes-modal-grid">
-              <div class="paquetes-modal-item">
-                <div class="paquetes-modal-item-icon">
+            <div class="pqt-modal-grid">
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
                   <i class="fas fa-couch"></i>
                 </div>
-                <div class="paquetes-modal-item-text">
-                  Sala de Descanso - Comedor<br />
-                  TV Cable - WIFI<br />
-                  Baño Privado
+                <div class="pqt-modal-item-text">
+                  Sala de Descanso - Comedor
                 </div>
               </div>
-              <div class="paquetes-modal-item">
-                <div class="paquetes-modal-item-icon">
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-tv"></i>
+                </div>
+                <div class="pqt-modal-item-text">TV Cable - WIFI</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-bath"></i>
+                </div>
+                <div class="pqt-modal-item-text">Baño Privado</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
                   <i class="fas fa-blender"></i>
                 </div>
-                <div class="paquetes-modal-item-text">
-                  Frigobar<br />
-                  Microondas<br />
-                  Vajilla
+                <div class="pqt-modal-item-text">Frigobar</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-microphone"></i>
                 </div>
+                <div class="pqt-modal-item-text">Microondas</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-concierge-bell"></i>
+                </div>
+                <div class="pqt-modal-item-text">Vajilla</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-bell-concierge"></i>
+                </div>
+                <div class="pqt-modal-item-text">Servicio a la habitación</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <div class="pqt-modal-item-text">Despertador</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-lock"></i>
+                </div>
+                <div class="pqt-modal-item-text">Caja fuerte</div>
               </div>
             </div>
           </div>
 
-          <div class="paquetes-divider"></div>
+          <div class="pqt-divider"></div>
+          <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+            <span>Desplázate para ver más</span>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Modal Estándar -->
-    <div class="paquetes-modal-overlay" id="modal-estandar">
-      <div class="paquetes-modal">
-        <button class="paquetes-modal-close">
+    <div class="pqt-modal-overlay" id="pqt-modal-estandar">
+      <div class="pqt-modal">
+        <button class="pqt-modal-close">
           <i class="fas fa-times"></i>
         </button>
 
-        <div class="paquetes-slider-container">
+        <div class="pqt-slider-container">
           <div class="swiper" id="swiper-estandar">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
@@ -668,319 +929,307 @@
           </div>
         </div>
 
-        <div class="paquetes-modal-content">
-          <div class="paquetes-modal-header">
-            <div class="paquetes-modal-title-section">
-              <div class="paquetes-modal-icon">
+        <div class="pqt-modal-content">
+          <div class="pqt-modal-header">
+            <div class="pqt-modal-title-section">
+              <div class="pqt-modal-icon">
                 <img
                   src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756937847/68b6d353-7bf4-4c30-9034-08807a6f52a2.png"
                   alt="Cupido"
-                  style="width: 30px; height: 30px"
                 />
               </div>
-              <div class="paquetes-modal-titles">
+              <div class="pqt-modal-titles">
                 <h2>PLANES ROMÁNTICO</h2>
                 <h3>ESTÁNDAR</h3>
               </div>
             </div>
-            <button class="paquetes-modal-reserve-btn">
+            <button class="pqt-modal-reserve-btn">
               <i class="fas fa-bell"></i>
               Reservar
             </button>
           </div>
 
-          <div class="paquetes-modal-section">
+          <div class="pqt-modal-section">
             <h4>LO QUE INCLUYE:</h4>
-            <div class="paquetes-modal-grid">
-              <div class="paquetes-modal-item">
-                <div class="paquetes-modal-item-icon">
+            <div class="pqt-modal-grid">
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
                   <i class="fas fa-bed"></i>
                 </div>
-                <div class="paquetes-modal-item-text">
-                  Habitación Matrimonial Estándar<br />
-                  Pétalos de Rosa en la Cama<br />
-                  Camino de Pétalos
+                <div class="pqt-modal-item-text">
+                  Habitación Matrimonial Estándar
                 </div>
               </div>
-              <div class="paquetes-modal-item">
-                <div class="paquetes-modal-item-icon">
-                  <i class="fas fa-spa"></i>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-rose"></i>
                 </div>
-                <div class="paquetes-modal-item-text">
-                  Decorado de letras LED "LOVE"<br />
-                  Mini Bouquet Eterno<br />
+                <div class="pqt-modal-item-text">
+                  Pétalos de Rosa en la Cama
+                </div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-road"></i>
+                </div>
+                <div class="pqt-modal-item-text">Camino de Pétalos</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-font"></i>
+                </div>
+                <div class="pqt-modal-item-text">
+                  Decorado de letras LED "LOVE"
+                </div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-gift"></i>
+                </div>
+                <div class="pqt-modal-item-text">Mini Bouquet Eterno</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-wine-glass-alt"></i>
+                </div>
+                <div class="pqt-modal-item-text">Vino</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-heart"></i>
+                </div>
+                <div class="pqt-modal-item-text">
                   Cortina de corazón "Ingreso"
                 </div>
               </div>
-              <div class="paquetes-modal-item">
-                <div class="paquetes-modal-item-icon">
-                  <i class="fas fa-wine-glass"></i>
-                </div>
-                <div class="paquetes-modal-item-text">Vino</div>
-              </div>
             </div>
           </div>
 
-          <div class="paquetes-divider"></div>
+          <div class="pqt-divider"></div>
 
-          <div class="paquetes-modal-section">
+          <div class="pqt-modal-section">
             <h4>CARACTERÍSTICAS DE HABITACIÓN:</h4>
-            <div class="paquetes-modal-grid">
-              <div class="paquetes-modal-item">
-                <div class="paquetes-modal-item-icon">
+            <div class="pqt-modal-grid">
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
                   <i class="fas fa-blender"></i>
                 </div>
-                <div class="paquetes-modal-item-text">
-                  Frigobar<br />
-                  Microondas<br />
-                  Vajilla
-                </div>
+                <div class="pqt-modal-item-text">Frigobar</div>
               </div>
-              <div class="paquetes-modal-item">
-                <div class="paquetes-modal-item-icon">
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-microphone"></i>
+                </div>
+                <div class="pqt-modal-item-text">Microondas</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-concierge-bell"></i>
+                </div>
+                <div class="pqt-modal-item-text">Vajilla</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
                   <i class="fas fa-tv"></i>
                 </div>
-                <div class="paquetes-modal-item-text">
-                  TV Cable - WIFI<br />
-                  Baño Privado
+                <div class="pqt-modal-item-text">TV Cable - WIFI</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-bath"></i>
                 </div>
+                <div class="pqt-modal-item-text">Baño Privado</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-bell-concierge"></i>
+                </div>
+                <div class="pqt-modal-item-text">Servicio a la habitación</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <div class="pqt-modal-item-text">Despertador</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-lock"></i>
+                </div>
+                <div class="pqt-modal-item-text">Caja fuerte</div>
               </div>
             </div>
           </div>
 
-          <div class="paquetes-divider"></div>
+          <div class="pqt-divider"></div>
+          <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+            <span>Desplázate para ver más</span>
+          </div>
         </div>
       </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/swiper/8.4.7/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-      // Initialize Swiper instances
-      let swiperSuite, swiperEstandar;
+      // Variables globales
+      let currentSwiper = null;
 
-      function initSwipers() {
-        swiperSuite = new Swiper("#swiper-suite", {
-          loop: true,
-          pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
+      // Inicialización cuando el DOM esté listo
+      document.addEventListener("DOMContentLoaded", function () {
+        initializeAnimations();
+        initializeModals();
+        setupModalScrollEffects();
+
+        // Agregar event listeners para los botones de reserva
+        document.querySelectorAll(".pqt-reserve-btn").forEach((btn) => {
+          btn.addEventListener("click", function () {
+            // Aquí puedes agregar la lógica para reservar
+            alert("Función de reserva pronto disponible");
+          });
+        });
+      });
+
+      // Animaciones de entrada
+      function initializeAnimations() {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const section = entry.target;
+                section.classList.add("animate");
+
+                // Animar elementos individualmente
+                setTimeout(() => {
+                  const items = section.querySelectorAll(".pqt-item");
+                  items.forEach((item, index) => {
+                    setTimeout(() => {
+                      item.classList.add("animate");
+                    }, index * 300);
+                  });
+                }, 300);
+              }
+            });
           },
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          },
-          autoplay: {
-            delay: 4000,
-            disableOnInteraction: false,
-          },
-          effect: "fade",
-          fadeEffect: {
-            crossFade: true,
-          },
+          {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px",
+          }
+        );
+
+        const section = document.getElementById("pqt-section");
+        if (section) {
+          observer.observe(section);
+        }
+      }
+
+      // Inicializar modales
+      function initializeModals() {
+        // Agregar event listeners para abrir modales
+        document.querySelectorAll(".pqt-detail-link").forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const modalType = this.getAttribute("data-modal");
+            openModal(`pqt-modal-${modalType}`);
+          });
         });
 
-        swiperEstandar = new Swiper("#swiper-estandar", {
-          loop: true,
-          pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-          },
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          },
-          autoplay: {
-            delay: 4000,
-            disableOnInteraction: false,
-          },
-          effect: "fade",
-          fadeEffect: {
-            crossFade: true,
-          },
+        // Agregar event listeners para cerrar modales
+        document.querySelectorAll(".pqt-modal-close").forEach((closeBtn) => {
+          closeBtn.addEventListener("click", function () {
+            const modal = this.closest(".pqt-modal-overlay");
+            closeModal(modal);
+          });
+        });
+
+        // Cerrar modal al hacer clic en el overlay
+        document.querySelectorAll(".pqt-modal-overlay").forEach((overlay) => {
+          overlay.addEventListener("click", function (e) {
+            if (e.target === this) {
+              closeModal(this);
+            }
+          });
+        });
+
+        // Cerrar modal con tecla ESC
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            const activeModal = document.querySelector(
+              ".pqt-modal-overlay.active"
+            );
+            if (activeModal) {
+              closeModal(activeModal);
+            }
+          }
         });
       }
 
-      // Modal functionality
+      // Configurar efectos de scroll en modales
+      function setupModalScrollEffects() {
+        document.querySelectorAll(".pqt-modal-content").forEach((content) => {
+          content.addEventListener("scroll", function () {
+            const modal = this.closest(".pqt-modal");
+            if (this.scrollTop > 20) {
+              modal.classList.add("scrolled");
+            } else {
+              modal.classList.remove("scrolled");
+            }
+          });
+        });
+      }
+
+      // Funciones de modal
       function openModal(modalId) {
         const modal = document.getElementById(modalId);
         if (modal) {
           modal.classList.add("active");
           document.body.style.overflow = "hidden";
 
-          // Initialize swipers when modal opens
-          setTimeout(() => {
-            initSwipers();
-          }, 100);
+          // Inicializar swiper para este modal
+          const roomType = modalId.replace("pqt-modal-", "");
+          const swiperEl = modal.querySelector(".swiper");
+
+          // Destruir swiper existente si hay uno
+          if (currentSwiper) {
+            currentSwiper.destroy(true, true);
+          }
+
+          currentSwiper = new Swiper(swiperEl, {
+            loop: true,
+            pagination: {
+              el: ".swiper-pagination",
+              clickable: true,
+            },
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+            autoplay: {
+              delay: 4000,
+              disableOnInteraction: false,
+            },
+            effect: "fade",
+            fadeEffect: {
+              crossFade: true,
+            },
+          });
+
+          // Resetear estado de scroll
+          const modalContent = modal.querySelector(".pqt-modal");
+          modalContent.classList.remove("scrolled");
         }
       }
 
-      function closeModal(modalId) {
-        const modal = document.getElementById(modalId);
-        if (modal) {
-          modal.classList.remove("active");
-          document.body.style.overflow = "auto";
+      function closeModal(modal) {
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
 
-          // Destroy swiper instances
-          if (swiperSuite) {
-            swiperSuite.destroy(true, true);
-            swiperSuite = null;
-          }
-          if (swiperEstandar) {
-            swiperEstandar.destroy(true, true);
-            swiperEstandar = null;
-          }
+        // Destruir swiper al cerrar el modal
+        if (currentSwiper) {
+          currentSwiper.destroy(true, true);
+          currentSwiper = null;
         }
       }
-
-      // Event listeners
-      document.addEventListener("DOMContentLoaded", function () {
-        // Detail links
-        document.querySelectorAll(".paquetes-detail-link").forEach((link) => {
-          link.addEventListener("click", function (e) {
-            e.preventDefault();
-            const modalType = this.getAttribute("data-modal");
-            openModal(`modal-${modalType}`);
-          });
-        });
-
-        // Close buttons
-        document.querySelectorAll(".paquetes-modal-close").forEach((button) => {
-          button.addEventListener("click", function () {
-            const modal = this.closest(".paquetes-modal-overlay");
-            closeModal(modal.id);
-          });
-        });
-
-        // Click outside modal to close
-        document
-          .querySelectorAll(".paquetes-modal-overlay")
-          .forEach((overlay) => {
-            overlay.addEventListener("click", function (e) {
-              if (e.target === this) {
-                closeModal(this.id);
-              }
-            });
-          });
-
-        // Escape key to close modal
-        document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape") {
-            document
-              .querySelectorAll(".paquetes-modal-overlay.active")
-              .forEach((modal) => {
-                closeModal(modal.id);
-              });
-          }
-        });
-
-        // Entrance animations with Intersection Observer
-        const observerOptions = {
-          threshold: 0.1,
-          rootMargin: "0px 0px -50px 0px",
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.style.animationPlayState = "running";
-              observer.unobserve(entry.target);
-            }
-          });
-        }, observerOptions);
-
-        // Observe animated elements
-        document
-          .querySelectorAll(".paquetes-header, .paquetes-item")
-          .forEach((el) => {
-            el.style.animationPlayState = "paused";
-            observer.observe(el);
-          });
-
-        // Add smooth hover effects to images
-        document.querySelectorAll(".paquetes-image").forEach((image) => {
-          image.addEventListener("mouseenter", function () {
-            this.style.transform = "translateY(-10px) scale(1.02)";
-          });
-
-          image.addEventListener("mouseleave", function () {
-            this.style.transform = "translateY(0) scale(1)";
-          });
-        });
-
-        // Add click effect to buttons
-        document
-          .querySelectorAll(
-            ".paquetes-reserve-btn, .paquetes-modal-reserve-btn"
-          )
-          .forEach((btn) => {
-            btn.addEventListener("click", function (e) {
-              // Create ripple effect
-              const ripple = document.createElement("span");
-              const rect = this.getBoundingClientRect();
-              const size = Math.max(rect.width, rect.height);
-              const x = e.clientX - rect.left - size / 2;
-              const y = e.clientY - rect.top - size / 2;
-
-              ripple.style.cssText = `
-                        position: absolute;
-                        width: ${size}px;
-                        height: ${size}px;
-                        left: ${x}px;
-                        top: ${y}px;
-                        background: rgba(255, 255, 255, 0.5);
-                        border-radius: 50%;
-                        transform: scale(0);
-                        animation: ripple 0.6s linear;
-                        pointer-events: none;
-                    `;
-
-              this.style.position = "relative";
-              this.style.overflow = "hidden";
-              this.appendChild(ripple);
-
-              setTimeout(() => {
-                ripple.remove();
-              }, 600);
-            });
-          });
-
-        // Add loading state to reserve buttons
-        document
-          .querySelectorAll(
-            ".paquetes-reserve-btn, .paquetes-modal-reserve-btn"
-          )
-          .forEach((btn) => {
-            btn.addEventListener("click", function () {
-              const originalText = this.innerHTML;
-              this.innerHTML =
-                '<i class="fas fa-spinner fa-spin"></i> Procesando...';
-              this.disabled = true;
-
-              setTimeout(() => {
-                this.innerHTML = originalText;
-                this.disabled = false;
-              }, 2000);
-            });
-          });
-      });
-
-      // Add CSS for ripple effect
-      const style = document.createElement("style");
-      style.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-            
-            .paquetes-reserve-btn:disabled,
-            .paquetes-modal-reserve-btn:disabled {
-                opacity: 0.6;
-                cursor: not-allowed;
-            }
-        `;
-      document.head.appendChild(style);
     </script>
   </body>
 </html>

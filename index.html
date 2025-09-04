@@ -37,7 +37,12 @@
           alt="Luxstone Hotel"
         />
       </div>
-      <button class="header-reserva-btn">Reservar</button>
+      <button
+        class="header-reserva-btn"
+        onclick="window.open('https://wa.me/59165528468?text=Hola%2C%20quisiera%20realizar%20una%20reserva%20y%20necesito%20más%20información%2C%20por%20favor.', '_blank')"
+      >
+        Reservar
+      </button>
       <nav
         class="header-nav"
         role="navigation"
@@ -46,7 +51,7 @@
         <ul class="header-nav-list" role="menubar">
           <li class="header-nav-item" role="none">
             <a
-              href="#inicio"
+              href="../index.html"
               class="header-nav-link"
               role="menuitem"
               aria-current="page"
@@ -54,22 +59,28 @@
             >
           </li>
           <li class="header-nav-item" role="none">
-            <a href="#habitaciones" class="header-nav-link" role="menuitem"
+            <a
+              href="paginas/hab/habitaciones.html"
+              class="header-nav-link"
+              role="menuitem"
               >Habitaciones</a
             >
           </li>
           <li class="header-nav-item" role="none">
-            <a href="#servicios" class="header-nav-link" role="menuitem"
+            <a href="../#servicios" class="header-nav-link" role="menuitem"
               >Servicios</a
             >
           </li>
           <li class="header-nav-item" role="none">
-            <a href="#atracciones" class="header-nav-link" role="menuitem"
+            <a href="../#atracciones" class="header-nav-link" role="menuitem"
               >Atracciones</a
             >
           </li>
           <li class="header-nav-item" role="none">
-            <a href="#paquetes" class="header-nav-link" role="menuitem"
+            <a
+              href="/paginas/paquetes/paquetes.html"
+              class="header-nav-link"
+              role="menuitem"
               >Paquetes</a
             >
           </li>
@@ -142,10 +153,16 @@
               </a>
             </li>
             <li class="hamburger-nav-item" role="none">
-              <a href="#reserve" class="hamburger-nav-link" role="menuitem">
-                <span class="hamburger-nav-icon"
-                  ><i class="fas fa-calendar-check"></i
-                ></span>
+              <a
+                href="https://wa.me/59165528468?text=Hola%2C%20quisiera%20realizar%20una%20reserva%20y%20necesito%20más%20información%2C%20por%20favor."
+                class="hamburger-nav-link"
+                role="menuitem"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="hamburger-nav-icon">
+                  <i class="fas fa-calendar-check"></i>
+                </span>
                 Reservar
               </a>
             </li>
@@ -306,7 +323,9 @@
           modernas, servicios prácticos y un ambiente acogedor te esperan para
           hacer de tu visita a La Paz una experiencia inolvidable.
         </p>
-        <a href="habitaciones.html" class="hab-button">Descubrir más</a>
+        <a href="/paginas/hab/habitaciones.html" class="hab-button"
+          >Descubrir más</a
+        >
       </div>
 
       <div class="hab-slider-container">
@@ -317,7 +336,7 @@
       </div>
     </section>
     <!-- servicios -->
-    <section class="servicios-boddy">
+    <section class="servicios-boddy" id="servicios">
       <div class="servicios-section">
         <div class="servicios-container">
           <div class="servicios-header">
@@ -335,28 +354,28 @@
             <div class="servicios-item">
               <div class="servicios-content">
                 <i class="fas fa-utensils servicios-icon"></i>
-                <span class="servicios-text">Restaurante Gourmet</span>
+                <span class="servicios-text">Restaurante</span>
               </div>
             </div>
 
             <div class="servicios-item">
               <div class="servicios-content">
                 <i class="fas fa-users servicios-icon"></i>
-                <span class="servicios-text">Áreas Sociales</span>
+                <span class="servicios-text">Área Común</span>
               </div>
             </div>
 
             <div class="servicios-item">
               <div class="servicios-content">
                 <i class="fas fa-coffee servicios-icon"></i>
-                <span class="servicios-text">Desayuno Premium</span>
+                <span class="servicios-text">Desayuno Continental</span>
               </div>
             </div>
 
             <div class="servicios-item">
               <div class="servicios-content">
                 <i class="fas fa-hot-tub servicios-icon"></i>
-                <span class="servicios-text">Jacuzzi & Spa</span>
+                <span class="servicios-text">Jacuzzi</span>
               </div>
             </div>
           </div>
@@ -378,11 +397,13 @@
           Viva la experiencia del romance en La Paz con el Paquete de Amor,
           detalles únicos y comodidad pensada para parejas.
         </p>
-        <a href="paquetes.html" class="paquetes-button">Ver más</a>
+        <a href="/paginas/paquetes/paquetes.html" class="paquetes-button"
+          >Ver más</a
+        >
       </div>
     </section>
     <!--Turismo-->
-    <section class="turismo-section">
+    <section class="turismo-section" id="atracciones">
       <div class="turismo-header">
         <h2 class="turismo-title">Tu Experiencia Completa</h2>
         <p class="turismo-subtitle">
@@ -661,7 +682,7 @@
                   <div class="footer-phone">
                     <i class="fas fa-phone" aria-hidden="true"></i>
                     <a
-                      href="tel:+59165528468"
+                      href="https://wa.me/59165528468?text=Hola%2C%20quisiera%20realizar%20una%20reserva%20y%20necesito%20más%20información%2C%20por%20favor."
                       target="_blank"
                       rel="noopener noreferrer"
                     >

@@ -43,7 +43,12 @@
           alt="Luxstone Hotel"
         />
       </div>
-      <button class="header-reserva-btn">Reservar</button>
+      <button
+        class="header-reserva-btn"
+        onclick="window.open('https://wa.me/59165528468?text=Hola%2C%20quisiera%20realizar%20una%20reserva%20y%20necesito%20más%20información%2C%20por%20favor.', '_blank')"
+      >
+        Reservar
+      </button>
       <nav
         class="header-nav"
         role="navigation"
@@ -52,7 +57,7 @@
         <ul class="header-nav-list" role="menubar">
           <li class="header-nav-item" role="none">
             <a
-              href="#inicio"
+              href="../../index.html"
               class="header-nav-link"
               role="menuitem"
               aria-current="page"
@@ -60,22 +65,28 @@
             >
           </li>
           <li class="header-nav-item" role="none">
-            <a href="#habitaciones" class="header-nav-link" role="menuitem"
+            <a
+              href="../hab/habitaciones.html"
+              class="header-nav-link"
+              role="menuitem"
               >Habitaciones</a
             >
           </li>
           <li class="header-nav-item" role="none">
-            <a href="#servicios" class="header-nav-link" role="menuitem"
+            <a href="../../#servicios" class="header-nav-link" role="menuitem"
               >Servicios</a
             >
           </li>
           <li class="header-nav-item" role="none">
-            <a href="#atracciones" class="header-nav-link" role="menuitem"
+            <a href="../../#atracciones" class="header-nav-link" role="menuitem"
               >Atracciones</a
             >
           </li>
           <li class="header-nav-item" role="none">
-            <a href="#paquetes" class="header-nav-link" role="menuitem"
+            <a
+              href="../paquetes/paquetes.html"
+              class="header-nav-link"
+              role="menuitem"
               >Paquetes</a
             >
           </li>
@@ -103,7 +114,7 @@
           <ul class="hamburger-nav" role="menubar">
             <li class="hamburger-nav-item" role="none">
               <a
-                href="#home"
+                href="../../index.html"
                 class="hamburger-nav-link"
                 role="menuitem"
                 aria-current="page"
@@ -115,7 +126,11 @@
               </a>
             </li>
             <li class="hamburger-nav-item" role="none">
-              <a href="#rooms" class="hamburger-nav-link" role="menuitem">
+              <a
+                href="../../paginas/hab/habitaciones.html"
+                class="hamburger-nav-link"
+                role="menuitem"
+              >
                 <span class="hamburger-nav-icon"
                   ><i class="fas fa-bed"></i
                 ></span>
@@ -123,7 +138,11 @@
               </a>
             </li>
             <li class="hamburger-nav-item" role="none">
-              <a href="#services" class="hamburger-nav-link" role="menuitem">
+              <a
+                href="../../#servicios"
+                class="hamburger-nav-link"
+                role="menuitem"
+              >
                 <span class="hamburger-nav-icon"
                   ><i class="fas fa-concierge-bell"></i
                 ></span>
@@ -131,7 +150,11 @@
               </a>
             </li>
             <li class="hamburger-nav-item" role="none">
-              <a href="#packages" class="hamburger-nav-link" role="menuitem">
+              <a
+                href="paquetes.html"
+                class="hamburger-nav-link"
+                role="menuitem"
+              >
                 <span class="hamburger-nav-icon"
                   ><i class="fas fa-gift"></i
                 ></span>
@@ -139,7 +162,11 @@
               </a>
             </li>
             <li class="hamburger-nav-item" role="none">
-              <a href="#attractions" class="hamburger-nav-link" role="menuitem">
+              <a
+                href="../../#atracciones"
+                class="hamburger-nav-link"
+                role="menuitem"
+              >
                 <span class="hamburger-nav-icon"
                   ><i class="fas fa-map-marked-alt"></i
                 ></span>
@@ -147,10 +174,16 @@
               </a>
             </li>
             <li class="hamburger-nav-item" role="none">
-              <a href="#reserve" class="hamburger-nav-link" role="menuitem">
-                <span class="hamburger-nav-icon"
-                  ><i class="fas fa-calendar-check"></i
-                ></span>
+              <a
+                href="https://wa.me/59165528468?text=Hola%2C%20quisiera%20realizar%20una%20reserva%20y%20necesito%20más%20información%2C%20por%20favor."
+                class="hamburger-nav-link"
+                role="menuitem"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="hamburger-nav-icon">
+                  <i class="fas fa-calendar-check"></i>
+                </span>
                 Reservar
               </a>
             </li>
@@ -184,6 +217,431 @@
         </div>
       </div>
     </section>
+    <!--seccion de paquetes-->
+    <section class="pqt-section" id="pqt-section">
+      <header class="pqt-header">
+        <h1 class="pqt-title">Paquetes Especiales</h1>
+        <p class="pqt-description">
+          Sorprende a tu pareja con nuestro Paquete Especial de Amor. Amenidades
+          románticas y espacios acogedores te esperan. Haz de tu visita a
+          Luxstone una experiencia única y memorable.
+        </p>
+      </header>
+
+      <div class="pqt-grid">
+        <!-- Paquete Suite -->
+        <article class="pqt-item">
+          <div class="pqt-image">
+            <img
+              src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877516/decorado-03_lzkozl.webp"
+              alt="Suite Romántica Luxstone"
+            />
+          </div>
+          <div class="pqt-card">
+            <h2 class="pqt-card-title">PLAN ROMÁNTICO</h2>
+            <h3 class="pqt-card-subtitle">SUITE</h3>
+            <!--<p class="pqt-card-special">
+              Tu historia de amor merece un lugar especial. Suites con detalles
+              románticos para cada ocasión. Haz de tu estancia un recuerdo
+              inolvidable.
+            </p>-->
+            <p class="pqt-card-description">
+              Nuestro Plan Romántico Suite combina lujo y calidez para parejas
+              que desean una experiencia distinta. Vive la magia del romance en
+              un ambiente elegante y exclusivo.
+            </p>
+            <a href="#" class="pqt-detail-link" data-modal="suite"
+              >VER DETALLE</a
+            >
+            <br />
+            <button
+              class="pqt-reserve-btn"
+              onclick="window.open('https://wa.me/59165528468?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20acerca%20del%20Plan%20Rom%C3%A1ntico%20Suite.%20Estoy%20interesado%20en%20reservarlo%20y%20agradezco%20su%20amable%20atenci%C3%B3n.', '_blank')"
+            >
+              RESERVAR
+            </button>
+          </div>
+        </article>
+
+        <!-- Paquete Estándar -->
+        <article class="pqt-item reverse">
+          <div class="pqt-image">
+            <img
+              src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756826850/08_zx4fvl.png"
+              alt="Plan Romántico Estándar"
+            />
+          </div>
+          <div class="pqt-card">
+            <h2 class="pqt-card-title">PLAN ROMÁNTICO</h2>
+            <h3 class="pqt-card-subtitle">ESTÁNDAR</h3>
+            <!--<p class="pqt-card-special">
+              Tu historia de amor merece un lugar especial. Habitaciones con
+              detalles románticos para cada ocasión. Haz de tu estancia un
+              recuerdo inolvidable.
+            </p>-->
+            <p class="pqt-card-description">
+              Nuestro Plan Romántico Estándar es la manera perfecta de disfrutar
+              de La Paz con tu pareja, en un ambiente íntimo y con detalles
+              preparados para el amor.
+            </p>
+            <a href="#" class="pqt-detail-link" data-modal="estandar"
+              >VER DETALLE</a
+            >
+            <br />
+            <button
+              class="pqt-reserve-btn"
+              onclick="window.open('https://wa.me/59165528468?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20acerca%20del%20Plan%20Rom%C3%A1ntico%20Est%C3%A1ndar.%20Estoy%20interesado%20en%20reservarlo%20y%20agradezco%20su%20amable%20atenci%C3%B3n.', '_blank')"
+            >
+              RESERVAR
+            </button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Modal Suite -->
+    <div class="pqt-modal-overlay" id="pqt-modal-suite">
+      <div class="pqt-modal">
+        <button class="pqt-modal-close">
+          <i class="fas fa-times"></i>
+        </button>
+
+        <div class="pqt-slider-container">
+          <div class="swiper" id="swiper-suite">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877516/decorado-03_lzkozl.webp"
+                  alt="Suite Romántica 1"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877516/decorado-02_xxhklk.webp"
+                  alt="Suite Romántica 2"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877515/decorado-01_rlhwpa.webp"
+                  alt="Suite Romántica 3"
+                />
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+
+        <div class="pqt-modal-content">
+          <div class="pqt-modal-header">
+            <div class="pqt-modal-title-section">
+              <div class="pqt-modal-icon">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756937847/68b6d353-7bf4-4c30-9034-08807a6f52a2.png"
+                  alt="Cupido"
+                />
+              </div>
+              <div class="pqt-modal-titles">
+                <h2>PLANES ROMÁNTICO</h2>
+                <h3>SUITE</h3>
+              </div>
+            </div>
+            <button
+              class="pqt-modal-reserve-btn"
+              onclick="window.open('https://wa.me/59165528468?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20acerca%20del%20Plan%20Rom%C3%A1ntico%20Suite.%20Estoy%20interesado%20en%20reservarlo%20y%20agradezco%20su%20amable%20atenci%C3%B3n.', '_blank')"
+            >
+              <i class="fas fa-bell"></i>
+              Reservar
+            </button>
+          </div>
+
+          <div class="pqt-modal-section">
+            <h4>LO QUE INCLUYE:</h4>
+            <div class="pqt-modal-grid">
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-bed"></i>
+                </div>
+                <div class="pqt-modal-item-text">
+                  Habitación Suite Matrimonial
+                </div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-coffee"></i>
+                </div>
+                <div class="pqt-modal-item-text">
+                  Desayuno Buffet Continental
+                </div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-seedling"></i>
+                </div>
+                <div class="pqt-modal-item-text">
+                  Pétalos de Rosa en la Cama
+                </div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-road"></i>
+                </div>
+                <div class="pqt-modal-item-text">Camino de Pétalos</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-heart"></i>
+                </div>
+                <div class="pqt-modal-item-text">
+                  Cortina de corazón "Ingreso"
+                </div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-font"></i>
+                </div>
+                <div class="pqt-modal-item-text">Decorado de letras</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-wine-glass-alt"></i>
+                </div>
+                <div class="pqt-modal-item-text">Vino</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-utensils"></i>
+                </div>
+                <div class="pqt-modal-item-text">
+                  Mesa Comedor Decorada "letras LEAD(TE AMO) y Pétalos"
+                </div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-gift"></i>
+                </div>
+                <div class="pqt-modal-item-text">Mini Bouquet Eterno</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pqt-divider"></div>
+
+          <div class="pqt-modal-section">
+            <h4>CARACTERÍSTICAS DE HABITACIÓN:</h4>
+            <div class="pqt-modal-grid" id="pqt-grid2">
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-couch"></i>
+                </div>
+                <div class="pqt-modal-item-text">
+                  Sala de Descanso - Comedor
+                </div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-tv"></i>
+                </div>
+                <div class="pqt-modal-item-text">TV Cable - WIFI</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-bath"></i>
+                </div>
+                <div class="pqt-modal-item-text">Baño Privado</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-blender"></i>
+                </div>
+                <div class="pqt-modal-item-text">Frigobar</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-microphone"></i>
+                </div>
+                <div class="pqt-modal-item-text">Microondas</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-concierge-bell"></i>
+                </div>
+                <div class="pqt-modal-item-text">Vajilla</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pqt-divider"></div>
+          <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+            <span>Desplázate para ver más</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Estándar -->
+    <div class="pqt-modal-overlay" id="pqt-modal-estandar">
+      <div class="pqt-modal">
+        <button class="pqt-modal-close">
+          <i class="fas fa-times"></i>
+        </button>
+
+        <div class="pqt-slider-container">
+          <div class="swiper" id="swiper-estandar">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756826850/08_zx4fvl.png"
+                  alt="Plan Estándar 1"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756831326/BA%C3%91O_pAQUETE1_imgupscaler.ai_Sharpener_4K_fzbnmt.webp"
+                  alt="Plan Estándar 2"
+                />
+              </div>
+              <div class="swiper-slide">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756831423/paquete4_7_1_imgupscaler.ai_General_8K_rkyjhj.webp"
+                  alt="Plan Estándar 3"
+                />
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+          </div>
+        </div>
+
+        <div class="pqt-modal-content">
+          <div class="pqt-modal-header">
+            <div class="pqt-modal-title-section">
+              <div class="pqt-modal-icon">
+                <img
+                  src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756937847/68b6d353-7bf4-4c30-9034-08807a6f52a2.png"
+                  alt="Cupido"
+                />
+              </div>
+              <div class="pqt-modal-titles">
+                <h2>PLANES ROMÁNTICO</h2>
+                <h3>ESTÁNDAR</h3>
+              </div>
+            </div>
+            <button
+              class="pqt-modal-reserve-btn"
+              onclick="window.open('https://wa.me/59165528468?text=Hola%2C%20me%20gustar%C3%ADa%20obtener%20m%C3%A1s%20informaci%C3%B3n%20acerca%20del%20Plan%20Rom%C3%A1ntico%20Est%C3%A1ndar.%20Estoy%20interesado%20en%20reservarlo%20y%20agradezco%20su%20amable%20atenci%C3%B3n.', '_blank')"
+            >
+              <i class="fas fa-bell"></i>
+              Reservar
+            </button>
+          </div>
+
+          <div class="pqt-modal-section">
+            <h4>LO QUE INCLUYE:</h4>
+            <div class="pqt-modal-grid">
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-bed"></i>
+                </div>
+                <div class="pqt-modal-item-text">
+                  Habitación Matrimonial Estándar
+                </div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-seedling"></i>
+                </div>
+                <div class="pqt-modal-item-text">
+                  Pétalos de Rosa en la Cama
+                </div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-road"></i>
+                </div>
+                <div class="pqt-modal-item-text">Camino de Pétalos</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-font"></i>
+                </div>
+                <div class="pqt-modal-item-text">
+                  Decorado de letras LED "LOVE"
+                </div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-gift"></i>
+                </div>
+                <div class="pqt-modal-item-text">Mini Bouquet Eterno</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-wine-glass-alt"></i>
+                </div>
+                <div class="pqt-modal-item-text">Vino</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-heart"></i>
+                </div>
+                <div class="pqt-modal-item-text">
+                  Cortina de corazón "Ingreso"
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pqt-divider"></div>
+
+          <div class="pqt-modal-section">
+            <h4>CARACTERÍSTICAS DE HABITACIÓN:</h4>
+            <div class="pqt-modal-grid" id="pqt-grid2">
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-blender"></i>
+                </div>
+                <div class="pqt-modal-item-text">Frigobar</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-microphone"></i>
+                </div>
+                <div class="pqt-modal-item-text">Microondas</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-concierge-bell"></i>
+                </div>
+                <div class="pqt-modal-item-text">Vajilla</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-tv"></i>
+                </div>
+                <div class="pqt-modal-item-text">TV Cable - WIFI</div>
+              </div>
+              <div class="pqt-modal-item">
+                <div class="pqt-modal-item-icon">
+                  <i class="fas fa-bath"></i>
+                </div>
+                <div class="pqt-modal-item-text">Baño Privado</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pqt-divider"></div>
+          <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+            <span>Desplázate para ver más</span>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Footer -->
     <footer class="footer-section">
       <!-- Sección principal con imagen de fondo -->
@@ -235,7 +693,7 @@
                   <div class="footer-phone">
                     <i class="fas fa-phone" aria-hidden="true"></i>
                     <a
-                      href="tel:+59165528468"
+                      href="https://wa.me/59165528468?text=Hola%2C%20quisiera%20realizar%20una%20reserva%20y%20necesito%20más%20información%2C%20por%20favor."
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -302,6 +760,6 @@
     </footer>
     <!-- Script -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="../../assets/scriptHab.js"></script>
+    <script src="../../assets/paquete.js"></script>
   </body>
 </html>
