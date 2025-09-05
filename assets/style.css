@@ -276,7 +276,16 @@ body {
   height: 100vh;
   overflow: hidden;
 }
-
+.hero-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25); /* Ajusta el 0.25 a más o menos oscuridad */
+  pointer-events: none; /* Evita que bloquee clics */
+}
 /* Slider Images */
 .hero-slider {
   position: absolute;
@@ -430,7 +439,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 250px;
-  height: 170px;
+  height: 240px;
   z-index: 10;
 }
 
@@ -1707,7 +1716,7 @@ body {
 .turismo-section {
   font-family: "Open Sans", sans-serif;
   padding: 80px 20px;
-  max-width: 1200px;
+  max-width: 1600px;
   margin: 0 auto;
   position: relative;
 }
@@ -1783,7 +1792,7 @@ body {
 .turismo-image-container {
   position: relative;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 2px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease;
 }
@@ -1794,7 +1803,7 @@ body {
 
 .turismo-image {
   width: 100%;
-  height: 350px; /* Aumentado el height de las imágenes */
+  height: 400px; /* Aumentado el height de las imágenes */
   object-fit: cover;
   transition: transform 0.3s ease;
 }

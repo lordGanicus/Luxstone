@@ -28,6 +28,24 @@
     />
   </head>
   <body>
+    <div id="loader-container"></div>
+    <!-- Contenido principal -->
+    <link rel="stylesheet" href="/assets/loader.css" />
+    <!-- Script para cargar loader.html y loader.js -->
+    <script>
+      fetch("loader.html")
+        .then((res) => res.text())
+        .then((html) => {
+          const container = document.getElementById("loader-container");
+          container.innerHTML = html;
+
+          // Cargar el JS del loader dinámicamente
+          const script = document.createElement("script");
+          script.src = "/assets/loader.js";
+          document.body.appendChild(script);
+        })
+        .catch((err) => console.error("Error cargando loader.html:", err));
+    </script>
     <!-- Header que aparece al hacer scroll -->
     <header class="header" role="banner">
       <div class="header-line"></div>
