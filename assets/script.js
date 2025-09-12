@@ -130,24 +130,28 @@ function initHeader() {
 
 // Hamburger modal functionality - CORREGIDO
 function initHamburgerModal() {
-  const menuButton = document.querySelector(".hero-menu");
+  const menuButtons = document.querySelectorAll(".hero-menu"); // AHORA selecciona TODOS los botones
   const closeButton = document.querySelector(".hamburger-close");
   const modal = document.querySelector(".hamburger-modal");
   const navItems = document.querySelectorAll(".hamburger-nav-item");
   const navLinks = document.querySelectorAll(".hamburger-nav-link");
   const lineMarker = document.querySelector(".hamburger-line-marker");
 
-  menuButton.addEventListener("click", function () {
-    modal.classList.add("visible");
-    document.body.style.overflow = "hidden";
+  // Abrir modal con cualquiera de los botones
+  menuButtons.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      modal.classList.add("visible");
+      document.body.style.overflow = "hidden";
+    });
   });
 
+  // Cerrar modal con el botón de cerrar
   closeButton.addEventListener("click", function () {
     modal.classList.remove("visible");
     document.body.style.overflow = "auto";
   });
 
-  // Hover effect for menu items - CORREGIDO
+  // Hover effect para los items del menú
   navLinks.forEach((link) => {
     link.addEventListener("mouseenter", function () {
       const parentItem = this.parentElement;
@@ -158,7 +162,7 @@ function initHamburgerModal() {
     });
   });
 
-  // Close modal when clicking outside content
+  // Cerrar modal al hacer click fuera del contenido
   modal.addEventListener("click", function (e) {
     if (e.target === modal) {
       modal.classList.remove("visible");
@@ -695,3 +699,92 @@ window.addEventListener("scroll", function () {
     hero.style.transform = `translateY(${scrolled * 0.5}px)`;
   }
 });*/
+document.addEventListener("DOMContentLoaded", () => {
+  const slider = document.querySelector(".ubi-features");
+  if (!slider) return;
+
+  const items = Array.from(slider.querySelectorAll(".ubi-feature"));
+  if (items.length === 0) return;
+
+  // calcular posiciones centradas
+  let centers = [];
+  const calcCenters = () => {
+    centers = items.map((item) => {
+      return item.offsetLeft + item.offsetWidth / 2 - slider.clientWidth / 2;
+    });
+  };
+
+  // centrar en el medio al inicio
+  const middleIndex = Math.floor(items.length / 2);
+  const centerInitial = () => {
+    if (!centers.length) calcCenters();
+    slider.scrollLeft = centers[middleIndex] || 0;
+  };
+
+  window.addEventListener("load", () => {
+    calcCenters();
+    centerInitial();
+  });
+  window.addEventListener("resize", () => {
+    calcCenters();
+  });
+  setTimeout(() => {
+    calcCenters();
+    centerInitial();
+  }, 100);
+
+  let prevScrollLeft = slider.scrollLeft;
+  let lastDirection = null;
+  let scrollEndTimer = null;
+  let isTeleporting = false;
+
+  slider.addEventListener("scroll", () => {
+    if (isTeleporting) return;
+    const cur = slider.scrollLeft;
+    const delta = cur - prevScrollLeft;
+    lastDirection = delta > 0 ? "right" : delta < 0 ? "left" : lastDirection;
+    prevScrollLeft = cur;
+
+    if (scrollEndTimer) clearTimeout(scrollEndTimer);
+    scrollEndTimer = setTimeout(onScrollEnd, 120);
+  });
+
+  function onScrollEnd() {
+    if (!centers.length) calcCenters();
+
+    // buscar el índice más cercano
+    let nearestIdx = 0;
+    let bestDiff = Infinity;
+    centers.forEach((c, i) => {
+      const d = Math.abs(slider.scrollLeft - c);
+      if (d < bestDiff) {
+        bestDiff = d;
+        nearestIdx = i;
+      }
+    });
+
+    // caso: empujo más allá del último
+    if (nearestIdx === items.length - 1 && lastDirection === "right") {
+      teleportToIndex(0);
+      return;
+    }
+
+    // caso: empujo más allá del primero
+    if (nearestIdx === 0 && lastDirection === "left") {
+      teleportToIndex(items.length - 1);
+      return;
+    }
+
+    // snap normal
+    slider.scrollTo({ left: centers[nearestIdx], behavior: "smooth" });
+  }
+
+  function teleportToIndex(index) {
+    isTeleporting = true;
+    slider.scrollLeft = centers[index];
+    setTimeout(() => {
+      isTeleporting = false;
+      prevScrollLeft = slider.scrollLeft;
+    }, 60);
+  }
+});

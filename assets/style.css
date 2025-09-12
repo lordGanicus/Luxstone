@@ -15,11 +15,7 @@ body {
   background-color: #ffffff;
   color: #333;
 }
-@media (max-width: 768px) {
-  main {
-    display: none;
-  }
-}
+
 * {
   margin: 0;
   padding: 0;
@@ -31,7 +27,7 @@ body {
   top: -180px;
   left: 0;
   width: 100%;
-  height: 180px;
+  height: 15%;
   background-color: rgba(13, 11, 11, 0.85);
   backdrop-filter: blur(5px);
   transition: top 0.5s ease;
@@ -47,7 +43,7 @@ body {
   height: 2px;
   background: #ffffff;
   position: absolute;
-  top: 90px;
+  top: 64%;
   left: 0;
 }
 
@@ -57,7 +53,7 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: 120px;
-  height: 95px;
+  height: 60%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,8 +71,8 @@ body {
   position: absolute;
   top: 20px;
   right: 40px;
-  width: 180px;
-  height: 60px;
+  width: 10%;
+  height: 40%;
   background-color: #ffffff;
   border: 1px solid #693616;
   border-radius: 12px;
@@ -90,7 +86,10 @@ body {
   color: #1a1a1a;
   font-size: 24px;
 }
-
+.header-reserva-btn i {
+  font-size: 22px; /* ajusta el tamaño a tu gusto */
+  margin-right: 8px; /* separa el ícono del texto */
+}
 .header-reserva-btn:hover {
   background-color: #f5f5f5;
   border-color: #5a2a0f;
@@ -100,7 +99,7 @@ body {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 80px;
+  height: 35%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,7 +119,7 @@ body {
   font-family: "Prociono-Regular", Helvetica;
   font-weight: 400;
   color: #ffffff;
-  font-size: 24px;
+  font-size: clamp(16px, 2vw, 24px);
   text-decoration: none;
   padding: 10px 0;
   position: relative;
@@ -201,6 +200,8 @@ body {
   max-width: 80%;
   max-height: 80%;
   object-fit: contain;
+  position: relative;
+  left: 70%;
 }
 
 .hamburger-nav-container {
@@ -258,7 +259,7 @@ body {
   left: 40%;
   top: 0;
   width: 4px;
-  height: 100%;
+  height: 94%;
   background: rgba(252, 195, 66, 0.3);
 }
 
@@ -277,7 +278,7 @@ body {
 /* HERO STYLES */
 .hero-section {
   position: relative;
-  width: 100vw;
+  /*width: 100vw;*/
   height: 100vh;
   overflow: hidden;
 }
@@ -482,6 +483,7 @@ body {
 
 /* Ver Hotel Section */
 .hero-ver-hotel {
+  display: none;
   position: absolute;
   bottom: 20px;
   left: 50%;
@@ -561,20 +563,26 @@ body {
 }
 
 /* Responsive */
+@media (max-width: 1320px) and (min-width: 1024px) {
+  .header-nav-link {
+    font-size: clamp(16px, 2vw, 15px);
+  }
+  .header-reserva-btn {
+    font-size: 18px;
+  }
+  .info-description {
+    margin-bottom: 20px !important;
+  }
+  .info-logo {
+    width: 120px !important;
+    height: 120px !important;
+    margin-bottom: 10px !important;
+  }
+}
 @media (max-width: 1200px) {
-  .hamburger-content {
-    flex-direction: column;
-    align-items: center;
+  .hamburger-logo img {
+    left: 80%;
   }
-
-  .hamburger-logo {
-    width: 100%;
-    justify-content: center;
-    padding-right: 0;
-    margin-bottom: 40px;
-    height: 30%;
-  }
-
   .hamburger-nav-container {
     width: 100%;
     justify-content: center;
@@ -583,17 +591,46 @@ body {
   }
 }
 
+@media (min-width: 1024px) {
+  #id-hero {
+    display: none;
+  }
+  .header-reserva-btn {
+    width: 15%;
+  }
+}
 @media (max-width: 1024px) {
+  .header-reserva-btn {
+    display: none;
+  }
+  .hamburger-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .header-nav-list {
     gap: 25px;
   }
 
   .header-nav-link {
-    font-size: 20px;
+    font-size: 15px;
+  }
+  .header-reserva-btn {
+    width: 160px;
   }
 }
 
 @media (max-width: 900px) {
+  .hamburger-line,
+  .hamburger-line-marker {
+    display: none;
+  }
+  .hamburger-logo img {
+    left: 0;
+  }
+  .hamburger-nav-container {
+    top: 5%;
+  }
   .hamburger-nav {
     padding-left: 25px;
   }
@@ -604,18 +641,38 @@ body {
 }
 
 @media (max-width: 768px) {
+  .hero-menu {
+    width: 40px;
+    height: 40px;
+  }
+  .hamburger-logo img {
+    max-width: 80%;
+    max-height: 80%;
+  }
+  .hero-reserva-btn {
+    top: calc(50% + 250px) !important;
+  }
+  .hero-ver-hotel {
+    display: none;
+  }
+  .hero-nav-btn {
+    display: none;
+  }
   .header {
-    height: 140px;
+    height: 85px;
     top: -140px;
   }
 
   .header-line {
-    top: 65px;
+    top: 75px;
+    height: 1px;
   }
 
   .header-logo {
     width: 90px;
     height: 70px;
+    position: relative;
+    left: 11%;
   }
 
   .header-reserva-btn {
@@ -627,6 +684,7 @@ body {
   }
 
   .header-nav {
+    display: none;
     height: 60px;
   }
 
@@ -644,8 +702,8 @@ body {
   }
 
   .hero-logo {
-    width: 150px;
-    height: 80px;
+    width: 220px;
+    height: 120px;
   }
 
   .hero-reserva-btn {
@@ -683,6 +741,10 @@ body {
 }
 
 @media (max-width: 600px) {
+  .hero-circle {
+    width: 280px;
+    height: 280px;
+  }
   .hamburger-content {
     padding: 20px;
   }
@@ -707,6 +769,14 @@ body {
 }
 
 @media (max-width: 480px) {
+  .hamburger-logo img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .header-logo {
+    width: 70px;
+    height: 80px;
+  }
   .header-nav-list {
     gap: 10px;
   }
@@ -892,9 +962,24 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
-
+@media (min-width: 1500px) {
+  .info-service-icon {
+    font-size: 60px;
+  }
+}
+@media (max-width: 1024px) {
+  .hab-slider-container {
+    left: 40% !important;
+  }
+}
 /* Responsive adjustments */
 @media (max-width: 992px) {
+  .info-logo {
+    margin-bottom: 10px;
+  }
+  .info-description {
+    margin-bottom: 15px;
+  }
   .info-services {
     gap: 20px;
   }
@@ -910,18 +995,23 @@ body {
 }
 
 @media (max-width: 768px) {
+  .info-section {
+    min-height: 60vh;
+    height: auto !important;
+  }
   .info-description {
     font-size: 16px;
     margin-bottom: 40px;
   }
 
   .info-services {
-    gap: 15px;
+    gap: 10%;
   }
 
   .info-service-item {
     width: 100px;
     height: 100px;
+    padding: 10px;
   }
 
   .info-service-icon {
@@ -944,9 +1034,12 @@ body {
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 478px) {
+  .hab-slider-container {
+    left: 35% !important;
+  }
   .info-services {
-    gap: 10px;
+    gap: 5%;
   }
 
   .info-service-item {
@@ -1025,7 +1118,7 @@ body {
 
 .hab-title {
   font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 600;
+  font-weight: 300;
   margin-bottom: 24px;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -1065,7 +1158,7 @@ body {
 
 .hab-slider-container {
   position: absolute;
-  bottom: 80px;
+  bottom: 5%;
   left: 45%;
   transform: translateX(-50%);
   z-index: 3;
@@ -1109,6 +1202,9 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .hab-slider-container {
+    left: 40% !important;
+  }
   .hab-title {
     font-size: 2.5rem;
     letter-spacing: 1px;
@@ -1138,10 +1234,14 @@ body {
 
   .hab-content {
     padding: 0 15px;
+    width: 80%;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 520px) {
+  .hab-slider-container {
+    left: 35% !important;
+  }
   .hab-title {
     font-size: 2rem;
     margin-bottom: 20px;
@@ -1210,7 +1310,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 0px;
 }
 
 .servicios-section {
@@ -1242,7 +1342,7 @@ body {
   font-family: "Oswald", sans-serif;
   font-weight: 300;
   font-size: 3.2rem;
-  color: #2c3e50;
+  color: #0c0c0c;
   white-space: nowrap;
   letter-spacing: 1px;
 }
@@ -1250,7 +1350,7 @@ body {
 .servicios-line {
   width: 80px;
   height: 3px;
-  background: linear-gradient(90deg, #000000, #1b1b1b);
+  background: linear-gradient(90deg, #540b19 0%, #871228 50%, #ddcb66 100%);
   flex-shrink: 0;
 }
 
@@ -1285,7 +1385,7 @@ body {
   overflow: hidden;
   height: 100%;
   margin: 0 -4px;
-  border-radius: 8px;
+  border-radius: 2px;
 }
 
 .servicios-item::before {
@@ -1319,29 +1419,35 @@ body {
   z-index: 2;
   transition: all 0.7s ease;
   opacity: 0.9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .servicios-icon {
-  font-size: 2.8rem;
+  width: 70px; /* tamaño base */
+  height: 70px; /* mantiene proporción */
   margin-bottom: 18px;
   transition: all 0.7s ease;
   display: block;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  filter: drop-shadow(
+    2px 2px 8px rgba(0, 0, 0, 0.7)
+  ); /* reemplazo al text-shadow */
+}
+
+.servicios-item:hover .servicios-icon {
+  transform: translateY(-8px) scale(1.2); /* agranda y sube un poco */
+  opacity: 1;
 }
 
 .servicios-text {
   font-family: "Open Sans", sans-serif;
-  font-weight: 600;
+  font-weight: 300;
   font-size: 1.4rem;
   transition: all 0.7s ease;
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
   letter-spacing: 0.5px;
-}
-
-.servicios-item:hover .servicios-icon {
-  font-size: 3.8rem;
-  transform: translateY(-8px);
-  opacity: 1;
 }
 
 .servicios-item:hover .servicios-text {
@@ -1351,19 +1457,19 @@ body {
 
 /* Imágenes específicas */
 .servicios-item:nth-child(1) {
-  background-image: url("https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877516/decorado-03_lzkozl.webp");
+  background-image: url("https://res.cloudinary.com/ddqoou1fq/image/upload/v1757613691/ec4b899e-0253-4e7c-9a2f-1f1c2b33fb7a.png");
 }
 
 .servicios-item:nth-child(2) {
-  background-image: url("https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877516/decorado-02_xxhklk.webp");
+  background-image: url("https://res.cloudinary.com/ddqoou1fq/image/upload/v1757613662/ab78ee2d-1e87-4a4a-9792-597a5569f78b.png");
 }
 
 .servicios-item:nth-child(3) {
-  background-image: url("https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877515/decorado-01_rlhwpa.webp");
+  background-image: url("https://res.cloudinary.com/ddqoou1fq/image/upload/v1757613625/5fc995a7-68a4-47d4-be73-749b2b93154f.png");
 }
 
 .servicios-item:nth-child(4) {
-  background-image: url("https://res.cloudinary.com/ddqoou1fq/image/upload/v1755879735/Uxtone1_az5qxv.jpg");
+  background-image: url("https://res.cloudinary.com/ddqoou1fq/image/upload/v1757613472/1e668b6b-8807-48e0-bc43-b28457883ef3.png");
 }
 
 /* Efecto de brillo al hacer hover */
@@ -1416,22 +1522,29 @@ body {
   .servicios-item:hover .servicios-text {
     font-size: 1.5rem;
   }
+  .servicios-header {
+    left: 0%;
+  }
 }
 
 @media (max-width: 768px) {
-  body {
-    padding: 15px;
+  .servicios-header {
+    left: 10%;
   }
-
+  .servicios-boddy {
+    padding: 2px;
+  }
   .servicios-section {
-    padding: 60px 25px;
+    padding: 60px 5px;
   }
 
   .servicios-header {
     flex-direction: column;
-    align-items: flex-start;
+    /*align-items: flex-start;*/
     gap: 15px;
     margin-bottom: 40px;
+    width: 70%;
+    text-align: center;
   }
 
   .servicios-title {
@@ -1445,8 +1558,8 @@ body {
   .servicios-subtitle {
     font-size: 1rem;
     max-width: 100%;
-    text-align: left;
-    margin-left: 0;
+    align-items: center;
+    justify-content: center;
   }
 
   .servicios-grid {
@@ -1463,7 +1576,7 @@ body {
 
   .servicios-item:hover {
     flex: none;
-    height: 200px;
+    height: 300px;
     transform: none;
     margin: 0;
   }
@@ -1472,13 +1585,15 @@ body {
     bottom: 20px;
     left: 20px;
     display: flex;
-    align-items: center;
+    align-items: start;
     gap: 20px;
   }
 
   .servicios-icon {
     font-size: 2rem;
     margin-bottom: 0;
+    width: 50px;
+    height: 50px;
   }
 
   .servicios-text {
@@ -1515,7 +1630,7 @@ body {
   }
 
   .servicios-item:hover {
-    height: 170px;
+    height: 230px;
   }
 
   .servicios-content {
@@ -1621,7 +1736,10 @@ body {
 
 /* Botón */
 .paquetes-button {
-  display: inline-block;
+  display: inline-flex; /* cambia de inline-block a inline-flex */
+  align-items: center; /* centra verticalmente ícono + texto */
+  gap: 8px; /* espacio entre ícono y texto */
+
   padding: 0.8rem 2rem;
   background: linear-gradient(
     267deg,
@@ -1653,6 +1771,12 @@ body {
   transform: translateY(0);
 }
 
+/* Icono dentro del botón */
+.paquetes-button .paquetes-icon {
+  width: 40px; /* tamaño del ícono */
+  height: auto;
+  display: inline-block;
+}
 .paquetes-button:focus {
   outline: 2px solid #4a90e2;
   outline-offset: 2px;
@@ -1670,6 +1794,20 @@ body {
 
   .paquetes-description {
     font-size: 0.95rem;
+  }
+  .paquetes-background {
+    background-repeat: repeat-x;
+    background-position: 0 0;
+    animation: moverFondo 20s linear infinite;
+  }
+  /* Animación */
+  @keyframes moverFondo {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 100% 0;
+    }
   }
 }
 
@@ -2308,7 +2446,7 @@ body {
 
 .ubi-map-overlay {
   position: absolute;
-  top: 20px;
+  bottom: 20px;
   left: 20px;
   background: rgba(82, 12, 25, 0.9);
   color: white;
@@ -2346,87 +2484,6 @@ body {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-  .ubi-hero {
-    padding: 60px 15px;
-  }
-
-  .ubi-title {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-  }
-
-  .ubi-description {
-    font-size: 1.1rem;
-    margin-bottom: 40px;
-  }
-
-  .ubi-features {
-    grid-template-columns: 1fr;
-    gap: 25px;
-    margin-top: 40px;
-  }
-
-  .ubi-feature {
-    padding: 25px 20px;
-  }
-
-  .ubi-feature-icon {
-    width: 70px;
-    height: 70px;
-    font-size: 1.8rem;
-  }
-
-  .ubi-feature-title {
-    font-size: 1.2rem;
-  }
-
-  .ubi-feature-desc {
-    font-size: 0.95rem;
-  }
-
-  .ubi-map-section {
-    height: 400px;
-  }
-
-  .ubi-map-overlay {
-    top: 15px;
-    left: 15px;
-    padding: 12px 20px;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .ubi-title {
-    font-size: 2rem;
-    letter-spacing: 1px;
-  }
-
-  .ubi-description {
-    font-size: 1rem;
-    line-height: 1.7;
-  }
-
-  .ubi-features {
-    gap: 20px;
-  }
-
-  .ubi-feature {
-    padding: 20px 15px;
-  }
-
-  .ubi-map-section {
-    height: 350px;
-  }
-
-  .ubi-map-overlay {
-    top: 10px;
-    left: 10px;
-    padding: 10px 15px;
-    font-size: 0.9rem;
-  }
-}
 
 /* Animaciones adicionales para interactividad */
 .ubi-feature-icon i {
@@ -2490,9 +2547,113 @@ body {
     transform: translateY(-10px) rotate(1deg);
   }
 }
+/* --- Estilos móviles tipo slider --- */
+@media (max-width: 768px) {
+  .ubi-hero {
+    padding: 60px 15px;
+  }
+
+  .ubi-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+
+  .ubi-description {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+  }
+
+  /* Cambiamos grid a slider horizontal */
+  .ubi-features {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .ubi-feature {
+    flex: 0 0 80%; /* ancho de cada tarjeta en el slider */
+    scroll-snap-align: center;
+    min-width: 250px;
+    padding: 25px 20px;
+  }
+
+  .ubi-feature-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 1.8rem;
+  }
+
+  .ubi-feature-title {
+    font-size: 1.2rem;
+  }
+
+  .ubi-feature-desc {
+    font-size: 0.95rem;
+  }
+
+  .ubi-map-section {
+    height: 400px;
+  }
+
+  .ubi-map-overlay {
+    bottom: 10px;
+    top: auto;
+    left: 15px;
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .ubi-title {
+    font-size: 2rem;
+    letter-spacing: 1px;
+  }
+
+  .ubi-description {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  /* Slider más compacto en móviles pequeños */
+  .ubi-features {
+    gap: 15px;
+    padding: 8px;
+  }
+
+  .ubi-feature {
+    flex: 0 0 90%;
+    min-width: 220px;
+    padding: 20px 15px;
+  }
+
+  .ubi-map-section {
+    height: 350px;
+  }
+
+  .ubi-map-overlay {
+    left: 10px;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+}
+.ubi-map-overlay {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* espacio entre icono y texto */
+}
+
+.ubi-map-icon {
+  width: 28px; /* ajusta el tamaño del ícono del hotel */
+  height: 28px;
+  object-fit: contain;
+}
 /******************************Fotter*****************************/
 .footer-section {
-  width: 100vw;
+  /*width: 100vw;*/
   position: relative;
 }
 
@@ -2539,6 +2700,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  top: 20px;
 }
 
 .footer-logo {
@@ -2715,7 +2878,6 @@ body {
   }
 
   .footer-main-content {
-    flex-direction: column;
     gap: 30px;
   }
 
@@ -2733,14 +2895,31 @@ body {
 }
 
 @media (max-width: 768px) {
+  .footer-payments {
+    position: relative;
+    top: 10%;
+    right: 8%;
+    display: flex;
+    flex-direction: column;
+    width: 330px;
+  }
+  .footer-payment-icons {
+    position: relative;
+    left: 10%;
+    width: 80%;
+    max-width: 350px;
+    height: auto;
+    border-radius: 8px;
+  }
   .footer-content {
+    flex-direction: column;
     padding: 30px 20px 20px;
     text-align: center;
   }
 
   .footer-logo {
     width: 250px;
-    margin: 0 auto 30px;
+    margin: 0 auto 10px;
   }
 
   .footer-main-content {
@@ -2794,7 +2973,7 @@ body {
   }
 
   .footer-logo {
-    width: 200px;
+    width: 150px;
   }
 
   .footer-info-sections {
