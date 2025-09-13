@@ -457,13 +457,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const header = document.querySelector(".turismo-header");
   const cards = document.querySelectorAll(".turismo-card");
 
-  observer.observe(header);
+  if (header) observer.observe(header);
   cards.forEach((card) => observer.observe(card));
 });
 
 // Función para abrir modal
 function openModal(modalType) {
   const modal = document.getElementById(`turismo-modal-${modalType}`);
+  if (!modal) return;
   modal.classList.add("show");
   document.body.style.overflow = "hidden";
 }
@@ -477,51 +478,133 @@ function closeModal() {
   document.body.style.overflow = "auto";
 }
 
-// Función para mover slider
+// Función para mover slider (con guards y totalSlides dinámico)
 function moveSlider(sliderType, direction) {
-  const slider = turismoSliders[sliderType];
+  const sliderState = turismoSliders[sliderType];
   const sliderElement = document.getElementById(`turismo-slider-${sliderType}`);
-  const dots = document.querySelectorAll(
-    `[data-slider="${sliderType}"] .turismo-dot`
-  );
+  if (!sliderState || !sliderElement) return;
+
+  // actualizar totalSlides dinámicamente
+  const slidesCount = sliderElement.querySelectorAll(".turismo-slide").length;
+  if (slidesCount > 0) sliderState.totalSlides = slidesCount;
 
   if (direction === "next") {
-    slider.currentSlide = (slider.currentSlide + 1) % slider.totalSlides;
+    sliderState.currentSlide =
+      (sliderState.currentSlide + 1) % sliderState.totalSlides;
   } else {
-    slider.currentSlide =
-      slider.currentSlide === 0
-        ? slider.totalSlides - 1
-        : slider.currentSlide - 1;
+    sliderState.currentSlide =
+      sliderState.currentSlide === 0
+        ? sliderState.totalSlides - 1
+        : sliderState.currentSlide - 1;
   }
 
-  const translateX = -slider.currentSlide * 33.333;
+  const perSlide = 100 / sliderState.totalSlides; // porcentaje por slide
+  const translateX = -sliderState.currentSlide * perSlide;
   sliderElement.style.transform = `translateX(${translateX}%)`;
 
   // Actualizar dots
+  const dots = document.querySelectorAll(
+    `[data-slider="${sliderType}"] .turismo-dot`
+  );
   dots.forEach((dot, index) => {
-    dot.classList.toggle("active", index === slider.currentSlide);
+    dot.classList.toggle("active", index === sliderState.currentSlide);
   });
 }
 
 // Función para ir a slide específico
 function goToSlide(sliderType, slideIndex) {
-  const slider = turismoSliders[sliderType];
+  const sliderState = turismoSliders[sliderType];
   const sliderElement = document.getElementById(`turismo-slider-${sliderType}`);
+  if (!sliderState || !sliderElement) return;
+
+  const slidesCount = sliderElement.querySelectorAll(".turismo-slide").length;
+  if (slidesCount > 0) sliderState.totalSlides = slidesCount;
+
+  sliderState.currentSlide = Math.max(
+    0,
+    Math.min(slideIndex, sliderState.totalSlides - 1)
+  );
+  const perSlide = 100 / sliderState.totalSlides;
+  const translateX = -sliderState.currentSlide * perSlide;
+  sliderElement.style.transform = `translateX(${translateX}%)`;
+
   const dots = document.querySelectorAll(
     `[data-slider="${sliderType}"] .turismo-dot`
   );
-
-  slider.currentSlide = slideIndex;
-  const translateX = -slider.currentSlide * 33.333;
-  sliderElement.style.transform = `translateX(${translateX}%)`;
-
-  // Actualizar dots
   dots.forEach((dot, index) => {
-    dot.classList.toggle("active", index === slider.currentSlide);
+    dot.classList.toggle("active", index === sliderState.currentSlide);
   });
 }
 
-// Event listeners
+// Agregar soporte táctil y pointer (swipe)
+// sliderElement: el elemento .turismo-slider
+function addSwipeSupport(sliderElement) {
+  let startX = 0;
+  let isPointerDown = false;
+
+  const getSliderType = () =>
+    sliderElement.getAttribute("data-slider") ||
+    (sliderElement.id ? sliderElement.id.replace("turismo-slider-", "") : null);
+
+  function handleSwipe(start, end) {
+    const diff = end - start;
+    const abs = Math.abs(diff);
+    const threshold = 40; // px mínimo para considerar swipe
+
+    if (abs > threshold) {
+      const sliderType = getSliderType();
+      if (!sliderType || !turismoSliders[sliderType]) return;
+      if (diff > 0) moveSlider(sliderType, "prev");
+      else moveSlider(sliderType, "next");
+    }
+  }
+
+  // Touch events
+  sliderElement.addEventListener(
+    "touchstart",
+    (e) => {
+      if (!e.touches || e.touches.length === 0) return;
+      startX = e.touches[0].clientX;
+    },
+    { passive: true }
+  );
+
+  sliderElement.addEventListener(
+    "touchend",
+    (e) => {
+      if (!e.changedTouches || e.changedTouches.length === 0) return;
+      const endX = e.changedTouches[0].clientX;
+      handleSwipe(startX, endX);
+    },
+    { passive: true }
+  );
+
+  // Pointer events (soporta mouse drag/trackpad)
+  sliderElement.addEventListener("pointerdown", (e) => {
+    isPointerDown = true;
+    startX = e.clientX;
+    try {
+      sliderElement.setPointerCapture(e.pointerId);
+    } catch (err) {}
+  });
+
+  sliderElement.addEventListener("pointerup", (e) => {
+    if (!isPointerDown) return;
+    isPointerDown = false;
+    const endX = e.clientX;
+    try {
+      sliderElement.releasePointerCapture(e.pointerId);
+    } catch (err) {}
+    handleSwipe(startX, endX);
+  });
+
+  // Limpieza por si el pointer se cancela
+  sliderElement.addEventListener("pointercancel", () => {
+    isPointerDown = false;
+  });
+}
+
+// Event listeners (DOMContentLoaded principal)
 document.addEventListener("DOMContentLoaded", function () {
   // Click en cards para abrir modal
   document.querySelectorAll(".turismo-card").forEach((card) => {
@@ -565,7 +648,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".turismo-dot").forEach((dot) => {
     dot.addEventListener("click", function () {
       const sliderType = this.getAttribute("data-slider");
-      const slideIndex = parseInt(this.getAttribute("data-slide"));
+      const slideIndex = parseInt(this.getAttribute("data-slide"), 10);
       goToSlide(sliderType, slideIndex);
     });
   });
@@ -593,6 +676,17 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   });
+
+  // Añadir soporte swipe a todos los sliders (y fallback para data-slider desde el id)
+  document.querySelectorAll(".turismo-slider").forEach((sliderEl) => {
+    if (!sliderEl.getAttribute("data-slider") && sliderEl.id) {
+      sliderEl.setAttribute(
+        "data-slider",
+        sliderEl.id.replace("turismo-slider-", "")
+      );
+    }
+    addSwipeSupport(sliderEl);
+  });
 });
 
 // Auto-slide (opcional)
@@ -604,6 +698,7 @@ setInterval(() => {
     moveSlider(sliderType, "next");
   }
 }, 5000);
+
 /*********************Ubicacion********************/
 // Función para detectar cuando los elementos entran en viewport
 function ubi_observeElements() {

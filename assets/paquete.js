@@ -20,23 +20,26 @@ function initHeader() {
 
 // Hamburger modal functionality - CORREGIDO
 function initHamburgerModal() {
-  const menuButton = document.querySelector(".hero-menu");
+  const menuButtons = document.querySelectorAll(".hero-menu"); // AHORA selecciona TODOS los botones
   const closeButton = document.querySelector(".hamburger-close");
   const modal = document.querySelector(".hamburger-modal");
   const navItems = document.querySelectorAll(".hamburger-nav-item");
   const navLinks = document.querySelectorAll(".hamburger-nav-link");
   const lineMarker = document.querySelector(".hamburger-line-marker");
 
-  menuButton.addEventListener("click", function () {
-    modal.classList.add("visible");
-    document.body.style.overflow = "hidden";
+  // Abrir modal con cualquiera de los botones
+  menuButtons.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      modal.classList.add("visible");
+      document.body.style.overflow = "hidden";
+    });
   });
 
+  // Cerrar modal con el botón de cerrar
   closeButton.addEventListener("click", function () {
     modal.classList.remove("visible");
     document.body.style.overflow = "auto";
   });
-
   // Hover effect for menu items - CORREGIDO
   navLinks.forEach((link) => {
     link.addEventListener("mouseenter", function () {
