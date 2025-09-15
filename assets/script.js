@@ -5,7 +5,13 @@ class HeroSlider {
     this.totalSlides = this.slides.length;
     this.progressFill = document.querySelector(".hero-progress-fill");
     this.diamonds = document.querySelectorAll(".hero-diamond");
+    this.circleElements = document.querySelectorAll(
+      ".hero-progress-fill, .hero-diamond"
+    );
     this.isTransitioning = false;
+    this.videosLoaded = 0;
+    this.allVideosLoaded = false;
+    this.animationInterval = null;
 
     // Progress circle calculation
     this.circumference = 2 * Math.PI * 280; // radius = 280
@@ -19,38 +25,152 @@ class HeroSlider {
     this.progressFill.style.strokeDasharray = this.circumference;
     this.progressFill.style.strokeDashoffset = this.circumference;
 
-    // Event listeners
-    document
-      .querySelector(".hero-nav-next")
-      .addEventListener("click", () => this.nextSlide());
-    document
-      .querySelector(".hero-nav-prev")
-      .addEventListener("click", () => this.prevSlide());
+    // Ocultar inicialmente el círculo y diamantes
+    this.circleElements.forEach((el) => {
+      el.style.opacity = "0";
+    });
 
-    // Auto-advance slider
-    this.startAutoSlide();
+    // Esperar a que los videos se carguen
+    this.waitForVideosToLoad().then(() => {
+      this.allVideosLoaded = true;
 
-    // Initial progress update
+      // Mostrar y animar el círculo y diamantes
+      this.animateCircleAppearance();
+
+      // Event listeners
+      document
+        .querySelector(".hero-nav-next")
+        .addEventListener("click", () => this.nextSlide());
+      document
+        .querySelector(".hero-nav-prev")
+        .addEventListener("click", () => this.prevSlide());
+
+      // Auto-advance slider
+      this.startAutoSlide();
+
+      // Initial progress update
+      setTimeout(() => {
+        this.updateProgress();
+      }, 100);
+    });
+  }
+
+  // Animación de aparición del círculo y diamantes
+  animateCircleAppearance() {
+    let opacity = 0;
+    const interval = setInterval(() => {
+      opacity += 0.05;
+      this.circleElements.forEach((el) => {
+        el.style.opacity = opacity;
+      });
+
+      if (opacity >= 1) {
+        clearInterval(interval);
+        // Iniciar la animación cíclica de opacidad
+        this.startCircleOpacityAnimation();
+      }
+    }, 50);
+  }
+
+  // Animación cíclica de opacidad para el círculo y diamantes
+  startCircleOpacityAnimation() {
+    let opacity = 1;
+    let decreasing = true;
+
+    clearInterval(this.animationInterval);
+    this.animationInterval = setInterval(() => {
+      if (decreasing) {
+        opacity -= 0.01;
+        if (opacity <= 0.4) {
+          decreasing = false;
+        }
+      } else {
+        opacity += 0.01;
+        if (opacity >= 1) {
+          decreasing = true;
+        }
+      }
+
+      this.circleElements.forEach((el) => {
+        el.style.opacity = opacity;
+      });
+    }, 40); // Ajusta este valor para cambiar la velocidad de la animación
+  }
+
+  // Detener la animación de opacidad
+  stopCircleOpacityAnimation() {
+    clearInterval(this.animationInterval);
+  }
+
+  // Restablecer y reiniciar la animación de opacidad
+  resetCircleOpacityAnimation() {
+    this.stopCircleOpacityAnimation();
+
+    // Hacer visible inmediatamente
+    this.circleElements.forEach((el) => {
+      el.style.opacity = "1";
+    });
+
+    // Reiniciar la animación después de un breve retraso
     setTimeout(() => {
-      this.updateProgress();
+      this.startCircleOpacityAnimation();
     }, 100);
   }
 
+  waitForVideosToLoad() {
+    return new Promise((resolve) => {
+      const videoContainers = document.querySelectorAll(
+        ".video-container iframe"
+      );
+      let loadedCount = 0;
+
+      // Función para verificar cuando un video está listo
+      const checkVideoLoaded = () => {
+        loadedCount++;
+        if (loadedCount === videoContainers.length) {
+          resolve();
+        }
+      };
+
+      // Para iframes de YouTube, es difícil detectar la carga completa
+      // Usamos un timeout como solución práctica
+      videoContainers.forEach((iframe, index) => {
+        // El primer video debe cargarse completamente antes de comenzar
+        if (index === 0) {
+          iframe.onload = checkVideoLoaded;
+        } else {
+          // Para los demás videos, usamos un timeout progresivo
+          setTimeout(checkVideoLoaded, 1000 + index * 500);
+        }
+      });
+    });
+  }
+
   nextSlide() {
-    if (this.isTransitioning) return;
+    if (this.isTransitioning || !this.allVideosLoaded) return;
     this.isTransitioning = true;
+
+    // Reiniciar animación de opacidad
+    this.resetCircleOpacityAnimation();
 
     const currentSlideEl = this.slides[this.currentSlide];
     this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
     const nextSlideEl = this.slides[this.currentSlide];
 
-    // Slide transition
-    currentSlideEl.classList.remove("active");
-    nextSlideEl.classList.add("next");
+    // Mejor transición: fade out y fade in simultáneos
+    currentSlideEl.style.transition = "opacity 0.8s ease-in-out";
+    currentSlideEl.style.opacity = 0;
+
+    nextSlideEl.style.transition = "opacity 0.8s ease-in-out";
+    nextSlideEl.style.opacity = 1;
+    nextSlideEl.classList.add("active");
 
     setTimeout(() => {
-      nextSlideEl.classList.remove("next");
-      nextSlideEl.classList.add("active");
+      currentSlideEl.classList.remove("active");
+      currentSlideEl.style.opacity = "";
+      currentSlideEl.style.transition = "";
+
+      nextSlideEl.style.transition = "";
       this.isTransitioning = false;
     }, 800);
 
@@ -59,19 +179,31 @@ class HeroSlider {
   }
 
   prevSlide() {
-    if (this.isTransitioning) return;
+    if (this.isTransitioning || !this.allVideosLoaded) return;
     this.isTransitioning = true;
+
+    // Reiniciar animación de opacidad
+    this.resetCircleOpacityAnimation();
 
     const currentSlideEl = this.slides[this.currentSlide];
     this.currentSlide =
       this.currentSlide === 0 ? this.totalSlides - 1 : this.currentSlide - 1;
     const prevSlideEl = this.slides[this.currentSlide];
 
-    // Slide transition
-    currentSlideEl.classList.remove("active");
+    // Mejor transición: fade out y fade in simultáneos
+    currentSlideEl.style.transition = "opacity 0.8s ease-in-out";
+    currentSlideEl.style.opacity = 0;
+
+    prevSlideEl.style.transition = "opacity 0.8s ease-in-out";
+    prevSlideEl.style.opacity = 1;
     prevSlideEl.classList.add("active");
 
     setTimeout(() => {
+      currentSlideEl.classList.remove("active");
+      currentSlideEl.style.opacity = "";
+      currentSlideEl.style.transition = "";
+
+      prevSlideEl.style.transition = "";
       this.isTransitioning = false;
     }, 800);
 
@@ -97,6 +229,12 @@ class HeroSlider {
   }
 
   startAutoSlide() {
+    // No iniciar el auto slide hasta que los videos estén cargados
+    if (!this.allVideosLoaded) {
+      setTimeout(() => this.startAutoSlide(), 500);
+      return;
+    }
+
     this.autoSlideInterval = setInterval(() => {
       this.nextSlide();
     }, 5000);
@@ -179,14 +317,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Reserva button functionality
   document.querySelector(".hero-reserva-btn").addEventListener("click", () => {
-    alert("Redirigiendo a reservas...");
+    window.open(
+      "https://wa.me/59165528468?text=Hola%2C%20quisiera%20realizar%20una%20reserva%20y%20necesito%20más%20información%2C%20por%20favor.",
+      "_blank"
+    );
   });
 
   // Header reserva button functionality
   document
     .querySelector(".header-reserva-btn")
     .addEventListener("click", () => {
-      alert("Redirigiendo a reservas...");
+      window.open(
+        "https://wa.me/59165528468?text=Hola%2C%20quisiera%20realizar%20una%20reserva%20y%20necesito%20más%20información%2C%20por%20favor.",
+        "_blank"
+      );
     });
 
   // Smooth scrolling for navigation links

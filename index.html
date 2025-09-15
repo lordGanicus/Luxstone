@@ -206,9 +206,62 @@
       </div>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero-section" id="inicio">
-      <!-- Navigation Menu -->
+    <!-- Hero Section with Video Slider -->
+    <section class="hero-section">
+      <div class="hero-slider">
+        <!-- Video 1 -->
+        <div class="hero-slide active">
+          <div class="video-container">
+            <iframe
+              src="https://www.youtube.com/embed/k-lZIkJXyQQ?autoplay=1&mute=1&controls=0&loop=1&playlist=k-lZIkJXyQQ&modestbranding=1&rel=0&showinfo=0"
+              frameborder="0"
+              allow="autoplay; encrypted-media"
+              allowfullscreen
+            >
+            </iframe>
+          </div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="hero-slide">
+          <div class="video-container">
+            <iframe
+              src="https://www.youtube.com/embed/xROqMAIvByE?autoplay=1&mute=1&controls=0&loop=1&playlist=xROqMAIvByE&modestbranding=1&rel=0&showinfo=0"
+              frameborder="0"
+              allow="autoplay; encrypted-media"
+              allowfullscreen
+            >
+            </iframe>
+          </div>
+        </div>
+
+        <!-- Video 3 -->
+        <div class="hero-slide">
+          <div class="video-container">
+            <iframe
+              src="https://www.youtube.com/embed/Kq-NPIb4vZo?autoplay=1&mute=1&controls=0&loop=1&playlist=Kq-NPIb4vZo&modestbranding=1&rel=0&showinfo=0"
+              frameborder="0"
+              allow="autoplay; encrypted-media"
+              allowfullscreen
+            >
+            </iframe>
+          </div>
+        </div>
+
+        <!-- Video 4 -->
+        <div class="hero-slide">
+          <div class="video-container">
+            <iframe
+              src="https://www.youtube.com/embed/aJ4kFN8BNmQ?autoplay=1&mute=1&controls=0&loop=1&playlist=aJ4kFN8BNmQ&modestbranding=1&rel=0&showinfo=0"
+              frameborder="0"
+              allow="autoplay; encrypted-media"
+              allowfullscreen
+            >
+            </iframe>
+          </div>
+        </div>
+      </div>
+
       <button class="hero-menu" aria-label="Abrir menú">
         <img
           src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756138934/a20c0d45-de84-4825-8ca2-f7b094a3f7b8.png"
@@ -216,46 +269,8 @@
         />
       </button>
 
-      <!-- Slider Images -->
-      <div class="hero-slider">
-        <div
-          class="hero-slide active"
-          style="
-            background-image: url('https://res.cloudinary.com/ddqoou1fq/image/upload/v1756138999/4cba594e-b984-45a9-aa55-4f305d0ea745.png');
-          "
-        ></div>
-        <div
-          class="hero-slide"
-          style="
-            background-image: url('https://res.cloudinary.com/ddqoou1fq/image/upload/v1755879735/Uxtone1_az5qxv.jpg');
-          "
-        ></div>
-        <div
-          class="hero-slide"
-          style="
-            background-image: url('https://res.cloudinary.com/ddqoou1fq/image/upload/v1755879735/Imagen_Fachada_Luxtone_jltpok.jpg');
-          "
-        ></div>
-        <div
-          class="hero-slide"
-          style="
-            background-image: url('https://res.cloudinary.com/ddqoou1fq/image/upload/v1755877468/suite-matrimonial-_2_w6kyol.webp');
-          "
-        ></div>
-      </div>
-
-      <!-- Navigation Arrows -->
-      <button class="hero-nav-btn hero-nav-prev" aria-label="Imagen anterior">
-        ‹
-      </button>
-      <button class="hero-nav-btn hero-nav-next" aria-label="Imagen siguiente">
-        ›
-      </button>
-
-      <!-- Central Circle with Progress -->
       <div class="hero-center">
         <div class="hero-circle">
-          <!-- Progress Circle SVG -->
           <svg class="hero-progress-svg" viewBox="0 0 566 566">
             <circle class="hero-progress-bg" cx="283" cy="283" r="280"></circle>
             <circle
@@ -263,18 +278,14 @@
               cx="283"
               cy="283"
               r="280"
-              stroke-dasharray="1759.29"
-              stroke-dashoffset="1759.29"
             ></circle>
           </svg>
 
-          <!-- Diamond Indicators -->
-          <div class="hero-diamond hero-diamond-top active"></div>
+          <div class="hero-diamond hero-diamond-top"></div>
           <div class="hero-diamond hero-diamond-right"></div>
           <div class="hero-diamond hero-diamond-bottom"></div>
           <div class="hero-diamond hero-diamond-left"></div>
 
-          <!-- Logo -->
           <div class="hero-logo">
             <img
               src="https://res.cloudinary.com/ddqoou1fq/image/upload/v1756137794/f8da8817-fa9e-4cfe-b860-4f321a3e49f4.png"
@@ -283,20 +294,20 @@
           </div>
         </div>
 
-        <!-- Reserva Button -->
-        <button
-          class="hero-reserva-btn"
-          onclick="window.open('https://wa.me/59165528468?text=Hola%2C%20quisiera%20realizar%20una%20reserva%20y%20necesito%20más%20información%2C%20por%20favor.', '_blank')"
-        >
-          Reserva
-        </button>
+        <button class="hero-reserva-btn">Reservar</button>
       </div>
 
-      <!-- Ver Hotel -->
       <div class="hero-ver-hotel">
         <h2>Ver Hotel</h2>
         <div class="hero-ver-hotel-line"></div>
       </div>
+
+      <button class="hero-nav-btn hero-nav-prev">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="hero-nav-btn hero-nav-next">
+        <i class="fas fa-chevron-right"></i>
+      </button>
     </section>
     <main>
       <!-- Info container-->
